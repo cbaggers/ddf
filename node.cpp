@@ -44,6 +44,7 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     for(int i = 0; i < attrCount; i++)
     {
         FbxNodeAttribute* attrObj = pNode->GetNodeAttributeByIndex(i);
+        int attrType = ETypeToInt(attrObj->GetAttributeType());
         FbxUInt64 attr = VisitAttribute(exporters, attrObj);
     }
 

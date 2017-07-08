@@ -170,3 +170,33 @@ int EContactBehaviourToInt(FbxCharacter::EContactBehaviour mode)
     }
     exit(17);
 }
+
+int ETypeToInt(FbxNodeAttribute::EType attrType)
+{
+    switch (attrType)
+    {
+    case FbxNodeAttribute::eUnknown: return 0;
+    case FbxNodeAttribute::eNull: return 1;
+    case FbxNodeAttribute::eMarker: return 2;
+    case FbxNodeAttribute::eSkeleton: return 3;
+    case FbxNodeAttribute::eMesh: return 4;
+    case FbxNodeAttribute::eNurbs: return 5;
+    case FbxNodeAttribute::ePatch: return 6;
+    case FbxNodeAttribute::eCamera: return 7;
+    case FbxNodeAttribute::eCameraStereo: return 8;
+    case FbxNodeAttribute::eCameraSwitcher: return 9;
+    case FbxNodeAttribute::eLight: return 10;
+    case FbxNodeAttribute::eOpticalReference: return 11;
+    case FbxNodeAttribute::eOpticalMarker: return 12;
+    case FbxNodeAttribute::eNurbsCurve: return 13;
+    case FbxNodeAttribute::eTrimNurbsSurface: return 14;
+    case FbxNodeAttribute::eBoundary: return 15;
+    case FbxNodeAttribute::eNurbsSurface: return 16;
+    case FbxNodeAttribute::eShape: return 17;
+    case FbxNodeAttribute::eLODGroup: return 18;
+    case FbxNodeAttribute::eSubDiv: return 19;
+    case FbxNodeAttribute::eCachedEffect: return 20;
+    case FbxNodeAttribute::eLine: return 21;
+    }
+    exit(18);
+}
