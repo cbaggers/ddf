@@ -12,7 +12,7 @@ LINK_DIRECTORIES(/usr/local/lib/fbx/lib/gcc4/x64/debug/)
 
 # Source fles for the binary
 set(binary_SOURCES
-  src/main.cpp
+  main.cpp
 )
 
 # Add an executable with the above sources
