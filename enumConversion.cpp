@@ -53,3 +53,120 @@ int EShadingModeToInt(FbxNode::EShadingMode mode)
     }
     exit(5);
 }
+
+int ERollExtractionModeToInt(FbxCharacter::ERollExtractionMode mode)
+{
+    switch (mode)
+    {
+    case FbxCharacter::eRelativeRollExtraction: return 0;
+    case FbxCharacter::eAbsoluteRollExtraction: return 1;
+    case FbxCharacter::eRollExtractionTypeCount: return 2;
+    }
+    exit(6);
+}
+
+int EPostureModeToInt(FbxCharacter::EPostureMode mode)
+{
+    switch (mode)
+    {
+    case FbxCharacter::ePostureBiped: return 0;
+    case FbxCharacter::ePostureQuadriped: return 1;
+    case FbxCharacter::ePostureCount: return 2;
+    }
+    exit(7);
+}
+
+int EOffAutoUserToInt(FbxCharacter::EOffAutoUser user)
+{
+    switch (user)
+    {
+    case FbxCharacter::eParamModeOff: return 0;
+    case FbxCharacter::eParamModeAuto: return 1;
+    case FbxCharacter::eParamModeUser: return 2;
+    }
+    exit(8);
+}
+
+int EAutoUserToInt(FbxCharacter::EAutoUser user)
+{
+    switch (user)
+    {
+    case FbxCharacter::eParamModeAuto2: return 0;
+    case FbxCharacter::eParamModeUser2: return 1;
+    }
+    exit(9);
+}
+
+int EFloorPivotToInt(FbxCharacter::EFloorPivot pivot)
+{
+    switch (pivot)
+    {
+    case FbxCharacter::eFloorPivotAuto: return 0;
+    case FbxCharacter::eFloorPivotAnkle: return 1;
+    case FbxCharacter::eFloorPivotToes: return 2;
+    case FbxCharacter::eFloorPivotCount: return 3;
+    }
+    exit(11);
+}
+
+int EHipsTranslationModeToInt(FbxCharacter::EHipsTranslationMode mode)
+{
+    switch (mode)
+    {
+    case FbxCharacter::eHipsTranslationWorldRigid: return 0;
+    case FbxCharacter::eHipsTranslationBodyRigid: return 1;
+    case FbxCharacter::eHipsTranslationTypeCount: return 2;
+    }
+    exit(13);
+}
+
+
+int EFootContactTypeToInt(FbxCharacter::EFootContactType mode)
+{
+    switch (mode)
+    {
+    case FbxCharacter::eFootTypeNormal: return 0;
+    case FbxCharacter::eFootTypeAnkle: return 1;
+    case FbxCharacter::eFootTypeToeBase: return 2;
+    case FbxCharacter::eFootTypeHoof: return 3;
+    case FbxCharacter::eFootContactModeCount: return 4;
+    }
+    exit(14);
+}
+
+int EHandContactTypeToInt(FbxCharacter::EHandContactType mode)
+{
+    switch (mode)
+    {
+    case FbxCharacter::eHandTypeNormal: return 0;
+    case FbxCharacter::eHandTypeWrist: return 1;
+    case FbxCharacter::eHandTypeFingerBase: return 2;
+    case FbxCharacter::eHandTypeHoof: return 3;
+    case FbxCharacter::eHandContactModeCount: return 4;
+    }
+    exit(15);
+}
+
+int EFingerContactModeToInt(FbxCharacter::EFingerContactMode mode)
+{
+    switch (mode)
+    {
+    case FbxCharacter::eFingerContactModeSticky: return 0;
+    case FbxCharacter::eFingerContactModeSpread: return 1;
+    case FbxCharacter::eFingerContactModeStickySpread: return 2;
+    case FbxCharacter::eFingerContactModeCount: return 3;
+    }
+    exit(16);
+}
+
+int EContactBehaviourToInt(FbxCharacter::EContactBehaviour mode)
+{
+    switch (mode)
+    {
+    case FbxCharacter::eContactNeverSync: return 0;
+    case FbxCharacter::eContactSyncOnKey: return 1;
+    case FbxCharacter::eContactAlwaysSync: return 2;
+    case FbxCharacter::eContactBehaviorCount: return 3;
+    }
+    exit(17);
+}

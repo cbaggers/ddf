@@ -32,8 +32,7 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     FbxNode* targetNodeUp = pNode->GetTargetUp();
     if (targetNodeUp!=NULL)
     {
-        VisitNode(exporters, targetNodeUp);
-        targetUp = (FbxUInt64)targetNodeUp->GetUserDataPtr();
+        targetUp = VisitNode(exporters, targetNodeUp);
     }
 
     FbxVector4 postTargetRotation = pNode->GetPostTargetRotation();
@@ -45,13 +44,7 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     for(int i = 0; i < attrCount; i++)
     {
         FbxNodeAttribute* attrObj = pNode->GetNodeAttributeByIndex(i);
-        VisitAttribute(exporters, attrObj);
-
-        FbxUInt64 attr = -1;
-        if (attrObj!=NULL)
-        {
-            attr = (FbxUInt64)attrObj->GetUserDataPtr();
-        }
+        FbxUInt64 attr = VisitAttribute(exporters, attrObj);
     }
 
     FbxUInt64 defaultAttr = -1;
@@ -79,8 +72,7 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
 
         if (pNode->GetCharacterLink (i, pCharacter, pCharacterLinkType, pNodeId, pNodeSubId))
         {
-            VisitCharacter(exporters, *pCharacter);
-            FbxUInt64 characterID = (FbxUInt64)((*pCharacter)->GetUserDataPtr());
+            FbxUInt64 characterID = VisitCharacter(exporters, *pCharacter);
             FbxCharacterLink::EType linkType = (FbxCharacterLink::EType)*pCharacterLinkType;
             FbxEffector::ENodeId nodeID = (FbxEffector::ENodeId)*pNodeId;
         }
@@ -92,12 +84,7 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     for(int i = 0; i < materialCount; i++)
     {
         FbxSurfaceMaterial* materialObj = pNode->GetMaterial(i);
-        VisitSurfaceMaterial(exporters, materialObj);
-        FbxUInt64 material = -1;
-        if (materialObj!=NULL)
-        {
-            material = (FbxUInt64)materialObj->GetUserDataPtr();
-        }
+        FbxUInt64 material = VisitSurfaceMaterial(exporters, materialObj);
     }
 
     //
@@ -171,8 +158,8 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     int inherit = InheritTypeToInt(pNode->InheritType.Get());
     int quaternionInterpolate = EFbxQuatInterpModeToInt(pNode->QuaternionInterpolate.Get());
     int rotationOrder = EFbxRotationOrderToInt(pNode->RotationOrder.Get());
-    FbxReference lookAtProperty = pNode->LookAtProperty.Get();
-    FbxReference upVectorProperty = pNode->UpVectorProperty.Get();
+    // FbxReference lookAtProperty = pNode->LookAtProperty.Get();
+    // FbxReference upVectorProperty = pNode->UpVectorProperty.Get();
     // bool visibility = pNode->GetVisibility(); think this is just the property
 
     //
@@ -212,4 +199,5 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     {
         VisitNode(exporters, pNode->GetChild(j));
     }
+    return id;
 }

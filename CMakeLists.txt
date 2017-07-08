@@ -18,6 +18,7 @@ set(binary_SOURCES
   attribute.cpp
   character.cpp
   surfacematerial.cpp
+  controlSet.cpp
   main.cpp
 )
 
