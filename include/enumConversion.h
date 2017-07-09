@@ -32,4 +32,6 @@ int EFingerContactModeToInt(FbxCharacter::EFingerContactMode mode);
 
 int EContactBehaviourToInt(FbxCharacter::EContactBehaviour mode);
 
-int ETypeToInt(FbxNodeAttribute::EType attrType);
+int NodeAttributeETypeToInt(FbxNodeAttribute::EType attrType);
+
+int LayerElementETypeToInt(FbxLayerElement::EType attrType);

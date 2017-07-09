@@ -44,7 +44,7 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     for(int i = 0; i < attrCount; i++)
     {
         FbxNodeAttribute* attrObj = pNode->GetNodeAttributeByIndex(i);
-        int attrType = ETypeToInt(attrObj->GetAttributeType());
+        int attrType = NodeAttributeETypeToInt(attrObj->GetAttributeType());
         FbxUInt64 attr = VisitAttribute(exporters, attrObj);
     }
 
@@ -66,16 +66,16 @@ FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
     int characterLinkCount = pNode->GetCharacterLinkCount();
     for(int i = 0; i < characterLinkCount; i++)
     {
-        FbxCharacter** pCharacter = NULL;
-        int* pCharacterLinkType = NULL;
-        int* pNodeId = NULL;
-        int* pNodeSubId = NULL; // fbx internals, not of interest to us
+        FbxCharacter* pCharacter = NULL;
+        int pCharacterLinkType;
+        int pNodeId;
+        int pNodeSubId; // fbx internals, not of interest to us
 
-        if (pNode->GetCharacterLink (i, pCharacter, pCharacterLinkType, pNodeId, pNodeSubId))
+        if (pNode->GetCharacterLink (i, &pCharacter, &pCharacterLinkType, &pNodeId, &pNodeSubId))
         {
-            FbxUInt64 characterID = VisitCharacter(exporters, *pCharacter);
-            FbxCharacterLink::EType linkType = (FbxCharacterLink::EType)*pCharacterLinkType;
-            FbxEffector::ENodeId nodeID = (FbxEffector::ENodeId)*pNodeId;
+            FbxUInt64 characterID = VisitCharacter(exporters, pCharacter);
+            FbxCharacterLink::EType linkType = (FbxCharacterLink::EType)pCharacterLinkType;
+            FbxEffector::ENodeId nodeID = (FbxEffector::ENodeId)pNodeId;
         }
     }
 

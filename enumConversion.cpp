@@ -171,7 +171,7 @@ int EContactBehaviourToInt(FbxCharacter::EContactBehaviour mode)
     exit(17);
 }
 
-int ETypeToInt(FbxNodeAttribute::EType attrType)
+int NodeAttributeETypeToInt(FbxNodeAttribute::EType attrType)
 {
     switch (attrType)
     {
@@ -199,4 +199,44 @@ int ETypeToInt(FbxNodeAttribute::EType attrType)
     case FbxNodeAttribute::eLine: return 21;
     }
     exit(18);
+}
+
+int LayerElementETypeToInt(FbxLayerElement::EType attrType)
+{
+    switch (attrType)
+    {
+    case FbxLayerElement::eUnknown: return 0;
+    case FbxLayerElement::eNormal: return 1;
+    case FbxLayerElement::eBiNormal: return 2;
+    case FbxLayerElement::eTangent: return 3;
+    case FbxLayerElement::eMaterial: return 4;
+    case FbxLayerElement::ePolygonGroup: return 5;
+    case FbxLayerElement::eUV: return 6;
+    case FbxLayerElement::eVertexColor: return 7;
+    case FbxLayerElement::eSmoothing: return 8;
+    case FbxLayerElement::eVertexCrease: return 9;
+    case FbxLayerElement::eEdgeCrease: return 10;
+    case FbxLayerElement::eHole: return 11;
+    case FbxLayerElement::eUserData: return 12;
+    case FbxLayerElement::eVisibility: return 13;
+    case FbxLayerElement::eTextureDiffuse: return 14;
+    case FbxLayerElement::eTextureDiffuseFactor: return 15;
+    case FbxLayerElement::eTextureEmissive: return 16;
+    case FbxLayerElement::eTextureEmissiveFactor: return 17;
+    case FbxLayerElement::eTextureAmbient: return 18;
+    case FbxLayerElement::eTextureAmbientFactor: return 19;
+    case FbxLayerElement::eTextureSpecular: return 20;
+    case FbxLayerElement::eTextureSpecularFactor: return 21;
+    case FbxLayerElement::eTextureShininess: return 22;
+    case FbxLayerElement::eTextureNormalMap: return 23;
+    case FbxLayerElement::eTextureBump: return 24;
+    case FbxLayerElement::eTextureTransparency: return 25;
+    case FbxLayerElement::eTextureTransparencyFactor: return 26;
+    case FbxLayerElement::eTextureReflection: return 27;
+    case FbxLayerElement::eTextureReflectionFactor: return 28;
+    case FbxLayerElement::eTextureDisplacement: return 29;
+    case FbxLayerElement::eTextureDisplacementVector: return 30;
+    case FbxLayerElement::eTypeCount: return 31;
+    }
+    exit(19);
 }
