@@ -7,7 +7,7 @@
 void ExportIntTemplateArray(FbxLayerElementArrayTemplate<int>& arr)
 {
     int len = arr.GetCount();
-    for (int i = 0; i < arr.GetCount(); i++) {
+    for (int i = 0; i < len; i++) {
         int ID = arr[i];
     }
 }
@@ -20,7 +20,7 @@ void ExportIndexToDirectTemplateArray(FbxLayerElementArrayTemplate<int>& arr)
 void ExportBoolTemplateArray(FbxLayerElementArrayTemplate<bool>& arr)
 {
     int len = arr.GetCount();
-    for (int i = 0; i < arr.GetCount(); i++) {
+    for (int i = 0; i < len; i++) {
         bool val = arr[i];
     }
 }
@@ -28,15 +28,23 @@ void ExportBoolTemplateArray(FbxLayerElementArrayTemplate<bool>& arr)
 void ExportDoubleTemplateArray(FbxLayerElementArrayTemplate<double>& arr)
 {
     int len = arr.GetCount();
-    for (int i = 0; i < arr.GetCount(); i++) {
+    for (int i = 0; i < len; i++) {
         double val = arr[i];
+    }
+}
+
+void ExportFbxVector2TemplateArray(FbxLayerElementArrayTemplate<FbxVector2>& arr)
+{
+    int len = arr.GetCount();
+    for (int i = 0; i < len; i++) {
+        FbxVector2 v4 = arr[i];
     }
 }
 
 void ExportFbxVector4TemplateArray(FbxLayerElementArrayTemplate<FbxVector4>& arr)
 {
     int len = arr.GetCount();
-    for (int i = 0; i < arr.GetCount(); i++) {
+    for (int i = 0; i < len; i++) {
         FbxVector4 v4 = arr[i];
     }
 }
@@ -44,7 +52,7 @@ void ExportFbxVector4TemplateArray(FbxLayerElementArrayTemplate<FbxVector4>& arr
 void ExportFbxColorTemplateArray(FbxLayerElementArrayTemplate<FbxColor>& arr)
 {
     int len = arr.GetCount();
-    for (int i = 0; i < arr.GetCount(); i++) {
+    for (int i = 0; i < len; i++) {
         FbxColor v4 = arr[i];
     }
 }
@@ -337,6 +345,50 @@ FbxUInt64 VisitVisibility (Exporters* exporters, FbxLayerElementVisibility* visi
 
 //------------------------------------------------------------
 
+static int layerUVSetID = -1;
+
+FbxUInt64 VisitUVSet (Exporters* exporters, const FbxLayerElementUV* uvs)
+{
+    // The FbxLayerElementUV class represents a UV set belonging
+    // to the geometry. Each UV set in a geometry has a name to
+    // identify itself. The string property FbxTexture.UVSet
+    // indicates the UV set to use.
+    if(!uvs) return -1;
+    // no userdata field
+    FbxUInt64 id = layerUVSetID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(uvs->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(uvs->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportFbxVector2TemplateArray(uvs->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(uvs->GetIndexArray());
+    }
+
+    return id;
+}
+
+static int layerUVSetsID = -1;
+
+FbxUInt64 VisitUVSets (Exporters* exporters, FbxArray<const FbxLayerElementUV*>& uvSets)
+{
+    if(!uvSets) return -1;
+    // no userdata field
+    FbxUInt64 id = layerUVSetsID+=1;
+
+    int len = uvSets.Size();
+    for (int i = 0; i < len; i++) {
+        const FbxLayerElementUV* elem = uvSets[i];
+        VisitUVSet(exporters, elem);
+    }
+    return id;
+}
+
+//------------------------------------------------------------
+
 static int layerID = -1;
 
 FbxUInt64 VisitLayer(Exporters* exporters, FbxLayer* pLayer)
@@ -344,7 +396,6 @@ FbxUInt64 VisitLayer(Exporters* exporters, FbxLayer* pLayer)
     // has no userdata so cant dedup here yet
     if(!pLayer) return -1;
     int id = layerID+=1;
-
 
     int binormalID = VisitBinormals(exporters, pLayer->GetBinormals());
     int edgeCreaseID = VisitEdgeCrease(exporters, pLayer->GetEdgeCrease());
@@ -358,13 +409,9 @@ FbxUInt64 VisitLayer(Exporters* exporters, FbxLayer* pLayer)
     int userDataID = VisitUserData(exporters, pLayer->GetUserData());
     int vertexColorsID = VisitVertexColors(exporters, pLayer->GetVertexColors());
     int visibilityID = VisitVisibility(exporters, pLayer->GetVisibility());
-
-    // FbxLayerElementTexture* textures = pLayer->GetTextures(FbxLayerElement::EType pType);
-    // FbxLayerElementUV* GetUVs(FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)
-    // int GetUVSetCount()
-    // FbxArray< FbxLayerElementUV* > GetUVSets()
-    // FbxArray< FbxLayerElement::EType > GetUVSetChannels()
-    // FbxLayerElement* GetLayerElementOfType(FbxLayerElement::EType pType, bool pIsUV=false)
+    FbxArray<const FbxLayerElementUV*> uvSets = pLayer->GetUVSets();
+    int uvsID = VisitUVSets(exporters, uvSets);
+    // FbxLayerElementTexture is deprecated so we ignore pLayer->GetTextures
 
     return id;
 }
