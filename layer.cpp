@@ -41,24 +41,33 @@ void ExportFbxVector4TemplateArray(FbxLayerElementArrayTemplate<FbxVector4>& arr
     }
 }
 
+void ExportFbxColorTemplateArray(FbxLayerElementArrayTemplate<FbxColor>& arr)
+{
+    int len = arr.GetCount();
+    for (int i = 0; i < arr.GetCount(); i++) {
+        FbxColor v4 = arr[i];
+    }
+}
+
 //------------------------------------------------------------
 
 static int layerBinormalsID = -1;
 
-FbxUInt64 VisitBinormals (Exporters* exporters, FbxLayerElementBinormal* normals)
+FbxUInt64 VisitBinormals (Exporters* exporters, FbxLayerElementBinormal* binormals)
 {
+    if(!binormals) return -1;
     // no userdata field
     FbxUInt64 id = layerBinormalsID+=1;
 
-    int mappingMode = LayerElementMappingModeToInt(normals->GetMappingMode());
-    int referenceMode = LayerElementReferenceModeToInt(normals->GetReferenceMode());
+    int mappingMode = LayerElementMappingModeToInt(binormals->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(binormals->GetReferenceMode());
     if (referenceMode==0) // direct
     {
-        ExportFbxVector4TemplateArray(normals->GetDirectArray());
+        ExportFbxVector4TemplateArray(binormals->GetDirectArray());
     }
     else // index
     {
-        ExportIndexToDirectTemplateArray(normals->GetIndexArray());
+        ExportIndexToDirectTemplateArray(binormals->GetIndexArray());
     }
 
     return id;
@@ -70,6 +79,7 @@ static int layerEdgeCreaseID = -1;
 
 FbxUInt64 VisitEdgeCrease (Exporters* exporters, FbxLayerElementCrease* creases)
 {
+    if(!creases) return -1;
     // no userdata field
     FbxUInt64 id = layerEdgeCreaseID+=1;
 
@@ -93,6 +103,7 @@ static int layerVertexCreaseID = -1;
 
 FbxUInt64 VisitVertexCrease (Exporters* exporters, FbxLayerElementCrease* creases)
 {
+    if(!creases) return -1;
     // no userdata field
     FbxUInt64 id = layerVertexCreaseID+=1;
 
@@ -116,6 +127,7 @@ static int layerHoleID = -1;
 
 FbxUInt64 VisitHole (Exporters* exporters, FbxLayerElementHole* holes)
 {
+    if(!holes) return -1;
     // no userdata field
     FbxUInt64 id = layerHoleID+=1;
 
@@ -139,6 +151,7 @@ static int layerMaterialID = -1;
 
 FbxUInt64 VisitMaterials (Exporters* exporters, FbxLayerElementMaterial* material)
 {
+    if(!material) return -1;
     // no userdata field
     FbxUInt64 id = layerMaterialID+=1;
 
@@ -168,6 +181,7 @@ static int layerNormalsID = -1;
 
 FbxUInt64 VisitNormals (Exporters* exporters, FbxLayerElementNormal* normals)
 {
+    if(!normals) return -1;
     // no userdata field
     FbxUInt64 id = layerNormalsID+=1;
 
@@ -196,6 +210,7 @@ static int layerPolygonGroupID = -1;
 
 FbxUInt64 VisitPolygonGroups (Exporters* exporters, FbxLayerElementPolygonGroup* material)
 {
+    if(!material) return -1;
     // no userdata field
     FbxUInt64 id = layerPolygonGroupID+=1;
 
@@ -220,6 +235,7 @@ static int layerSmoothingID = -1;
 
 FbxUInt64 VisitSmoothing (Exporters* exporters, FbxLayerElementSmoothing* smoothing)
 {
+    if(!smoothing) return -1;
     // no userdata field
     FbxUInt64 id = layerSmoothingID+=1;
 
@@ -244,6 +260,7 @@ static int layerTangentsID = -1;
 
 FbxUInt64 VisitTangents (Exporters* exporters, FbxLayerElementTangent* tangents)
 {
+    if(!tangents) return -1;
     // no userdata field
     FbxUInt64 id = layerTangentsID+=1;
 
@@ -272,17 +289,50 @@ FbxUInt64 VisitUserData (Exporters* exporters, FbxLayerElementUserData* foo)
 
 //------------------------------------------------------------
 
-FbxUInt64 VisitVertexColors (Exporters* exporters, FbxLayerElementVertexColor* foo)
+static int layerVertexColorsID = -1;
+
+FbxUInt64 VisitVertexColors (Exporters* exporters, FbxLayerElementVertexColor* colors)
 {
-    //
-    return -1;
+    if(!colors) return -1;
+    // no userdata field
+    FbxUInt64 id = layerVertexColorsID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(colors->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(colors->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportFbxColorTemplateArray(colors->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(colors->GetIndexArray());
+    }
+
+    return id;
 }
 
 //------------------------------------------------------------
 
-FbxUInt64 VisitVisibility (Exporters* exporters, FbxLayerElementVisibility* foo)
+static int layerVisibilityID = -1;
+
+FbxUInt64 VisitVisibility (Exporters* exporters, FbxLayerElementVisibility* visibility)
 {
-    return -1;
+    if(!visibility) return -1;
+    // no userdata field
+    FbxUInt64 id = layerVisibilityID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(visibility->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(visibility->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportBoolTemplateArray(visibility->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(visibility->GetIndexArray());
+    }
+
+    return id;
 }
 
 //------------------------------------------------------------

@@ -245,12 +245,12 @@ int LayerElementMappingModeToInt(FbxLayerElement::EMappingMode mode)
 {
     switch (mode)
     {
-    case eNone: return 0;
-    case eByControlPoint: return 1;
-    case eByPolygonVertex: return 2;
-    case eByPolygon: return 3;
-    case eByEdge: return 4;
-    case eAllSame: return 5;
+    case FbxLayerElement::eNone: return 0;
+    case FbxLayerElement::eByControlPoint: return 1;
+    case FbxLayerElement::eByPolygonVertex: return 2;
+    case FbxLayerElement::eByPolygon: return 3;
+    case FbxLayerElement::eByEdge: return 4;
+    case FbxLayerElement::eAllSame: return 5;
     }
     exit(20);
 }
@@ -259,9 +259,10 @@ int LayerElementReferenceModeToInt(FbxLayerElement::EReferenceMode mode)
 {
     switch (mode)
     {
-    case eDirect: return 0;
-    case eIndex: return 1; // In FBX V>=6, this is replaced with eIndexToDirect.
-    case eIndexToDirect: return 1;
+    case FbxLayerElement::eDirect: return 0;
+    // In FBX V>=6, eIndex is replaced with eIndexToDirect.
+    case FbxLayerElement::eIndex: return 1;
+    case FbxLayerElement::eIndexToDirect: return 1;
     }
     exit(21);
 }
