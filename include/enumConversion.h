@@ -39,3 +39,5 @@ int LayerElementETypeToInt(FbxLayerElement::EType attrType);
 int LayerElementMappingModeToInt(FbxLayerElement::EMappingMode mode);
 
 int LayerElementReferenceModeToInt(FbxLayerElement::EReferenceMode mode);
+
+int CameraEProjectionTypeToInt(FbxCamera::EProjectionType mode);

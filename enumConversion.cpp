@@ -266,3 +266,13 @@ int LayerElementReferenceModeToInt(FbxLayerElement::EReferenceMode mode)
     }
     exit(21);
 }
+
+int CameraEProjectionTypeToInt(FbxCamera::EProjectionType mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::ePerspective: return 0;
+    case FbxCamera::eOrthogonal: return 1;
+    }
+    exit(22);
+}
