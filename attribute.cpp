@@ -122,6 +122,21 @@ FbxUInt64 VisitCamera(Exporters* exporters, FbxCamera* pCamera)
     // FbxReference backgroundTexture = pCamera->BackgroundTexture.Get();
     // FbxReference foregroundTexture = pCamera->ForegroundTexture.Get();
 
+    bool viewCameraInterest = pCamera->GetViewCameraInterest();
+    bool viewNearFarPlanes = pCamera->GetViewNearFarPlanes();
+    double apertureHeight = pCamera->GetApertureHeight();
+    double apertureWidth = pCamera->GetApertureWidth();
+    double pixelRatio = pCamera->GetPixelRatio();
+    double squeezeRatio = pCamera->GetSqueezeRatio();
+
+    int apertureFormat = CameraEApertureFormatToInt(pCamera->GetApertureFormat());
+
+    // const char* GetBackgroundFileName();
+    // const char* GetBackgroundMediaName();
+    // const char* GetForegroundFileName();
+    // const char* GetForegroundMediaName();
+    // virtual FbxStringList GetTypeFlags();
+
     return id;
 }
 //------------------------------------------------------------
