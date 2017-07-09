@@ -240,3 +240,28 @@ int LayerElementETypeToInt(FbxLayerElement::EType attrType)
     }
     exit(19);
 }
+
+int LayerElementMappingModeToInt(FbxLayerElement::EMappingMode mode)
+{
+    switch (mode)
+    {
+    case eNone: return 0;
+    case eByControlPoint: return 1;
+    case eByPolygonVertex: return 2;
+    case eByPolygon: return 3;
+    case eByEdge: return 4;
+    case eAllSame: return 5;
+    }
+    exit(20);
+}
+
+int LayerElementReferenceModeToInt(FbxLayerElement::EReferenceMode mode)
+{
+    switch (mode)
+    {
+    case eDirect: return 0;
+    case eIndex: return 1; // In FBX V>=6, this is replaced with eIndexToDirect.
+    case eIndexToDirect: return 1;
+    }
+    exit(21);
+}

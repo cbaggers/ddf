@@ -4,28 +4,310 @@
 
 //------------------------------------------------------------
 
+void ExportIntTemplateArray(FbxLayerElementArrayTemplate<int>& arr)
+{
+    int len = arr.GetCount();
+    for (int i = 0; i < arr.GetCount(); i++) {
+        int ID = arr[i];
+    }
+}
+
+void ExportIndexToDirectTemplateArray(FbxLayerElementArrayTemplate<int>& arr)
+{
+    ExportIntTemplateArray(arr);
+}
+
+void ExportBoolTemplateArray(FbxLayerElementArrayTemplate<bool>& arr)
+{
+    int len = arr.GetCount();
+    for (int i = 0; i < arr.GetCount(); i++) {
+        bool val = arr[i];
+    }
+}
+
+void ExportDoubleTemplateArray(FbxLayerElementArrayTemplate<double>& arr)
+{
+    int len = arr.GetCount();
+    for (int i = 0; i < arr.GetCount(); i++) {
+        double val = arr[i];
+    }
+}
+
+void ExportFbxVector4TemplateArray(FbxLayerElementArrayTemplate<FbxVector4>& arr)
+{
+    int len = arr.GetCount();
+    for (int i = 0; i < arr.GetCount(); i++) {
+        FbxVector4 v4 = arr[i];
+    }
+}
+
+//------------------------------------------------------------
+
+static int layerBinormalsID = -1;
+
+FbxUInt64 VisitBinormals (Exporters* exporters, FbxLayerElementBinormal* normals)
+{
+    // no userdata field
+    FbxUInt64 id = layerBinormalsID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(normals->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(normals->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportFbxVector4TemplateArray(normals->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(normals->GetIndexArray());
+    }
+
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerEdgeCreaseID = -1;
+
+FbxUInt64 VisitEdgeCrease (Exporters* exporters, FbxLayerElementCrease* creases)
+{
+    // no userdata field
+    FbxUInt64 id = layerEdgeCreaseID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(creases->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(creases->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportDoubleTemplateArray(creases->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(creases->GetIndexArray());
+    }
+
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerVertexCreaseID = -1;
+
+FbxUInt64 VisitVertexCrease (Exporters* exporters, FbxLayerElementCrease* creases)
+{
+    // no userdata field
+    FbxUInt64 id = layerVertexCreaseID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(creases->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(creases->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportDoubleTemplateArray(creases->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(creases->GetIndexArray());
+    }
+
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerHoleID = -1;
+
+FbxUInt64 VisitHole (Exporters* exporters, FbxLayerElementHole* holes)
+{
+    // no userdata field
+    FbxUInt64 id = layerHoleID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(holes->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(holes->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportBoolTemplateArray(holes->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(holes->GetIndexArray());
+    }
+
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerMaterialID = -1;
+
+FbxUInt64 VisitMaterials (Exporters* exporters, FbxLayerElementMaterial* material)
+{
+    // no userdata field
+    FbxUInt64 id = layerMaterialID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(material->GetMappingMode());
+    // even though the only option is eIndexToDirect write this as it makes
+    // code reuse in the loaders easier
+    int referenceMode = LayerElementReferenceModeToInt(material->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        // FBX SDK 2011 and later connects materials (FbxSurfaceMaterial)
+        // to nodes (FbxNode). The direct array of this class is no longer used.
+        // The integer "n" in the index array of this class represents the n-th
+        // material (zero-based) connected to the node.
+
+        //ExportInt(0);
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(material->GetIndexArray());
+    }
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerNormalsID = -1;
+
+FbxUInt64 VisitNormals (Exporters* exporters, FbxLayerElementNormal* normals)
+{
+    // no userdata field
+    FbxUInt64 id = layerNormalsID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(normals->GetMappingMode());
+    // even though the only option is eIndexToDirect write this as it makes
+    // code reuse in the loaders easier
+    int referenceMode = LayerElementReferenceModeToInt(normals->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        // To be correctly saved in FBX file, this type of Layer element
+        // should have its reference mode set to eIndexToDirect.
+
+        //ExportInt(0);
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(normals->GetIndexArray());
+    }
+
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerPolygonGroupID = -1;
+
+FbxUInt64 VisitPolygonGroups (Exporters* exporters, FbxLayerElementPolygonGroup* material)
+{
+    // no userdata field
+    FbxUInt64 id = layerPolygonGroupID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(material->GetMappingMode());
+    // even though the only option is eIndexToDirect write this as it makes
+    // code reuse in the loaders easier
+    int referenceMode = LayerElementReferenceModeToInt(material->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        //ExportInt(0);
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(material->GetIndexArray());
+    }
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerSmoothingID = -1;
+
+FbxUInt64 VisitSmoothing (Exporters* exporters, FbxLayerElementSmoothing* smoothing)
+{
+    // no userdata field
+    FbxUInt64 id = layerSmoothingID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(smoothing->GetMappingMode());
+    // even though the only option is eDirect write this as it makes
+    // code reuse in the loaders easier
+    int referenceMode = LayerElementReferenceModeToInt(smoothing->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportIntTemplateArray(smoothing->GetIndexArray());
+    }
+    else // index
+    {
+        //ExportInt(0);
+    }
+    return id;
+}
+
+//------------------------------------------------------------
+
+static int layerTangentsID = -1;
+
+FbxUInt64 VisitTangents (Exporters* exporters, FbxLayerElementTangent* tangents)
+{
+    // no userdata field
+    FbxUInt64 id = layerTangentsID+=1;
+
+    int mappingMode = LayerElementMappingModeToInt(tangents->GetMappingMode());
+    int referenceMode = LayerElementReferenceModeToInt(tangents->GetReferenceMode());
+    if (referenceMode==0) // direct
+    {
+        ExportFbxVector4TemplateArray(tangents->GetDirectArray());
+    }
+    else // index
+    {
+        ExportIndexToDirectTemplateArray(tangents->GetIndexArray());
+    }
+
+    return id;
+}
+
+//------------------------------------------------------------
+
+FbxUInt64 VisitUserData (Exporters* exporters, FbxLayerElementUserData* foo)
+{
+    // we ignore user data as would require custom exporters and this is
+    // the dumb fbx dump, and by god we will keep it dumb
+    return -1;
+}
+
+//------------------------------------------------------------
+
+FbxUInt64 VisitVertexColors (Exporters* exporters, FbxLayerElementVertexColor* foo)
+{
+    //
+    return -1;
+}
+
+//------------------------------------------------------------
+
+FbxUInt64 VisitVisibility (Exporters* exporters, FbxLayerElementVisibility* foo)
+{
+    return -1;
+}
+
+//------------------------------------------------------------
+
 static int layerID = -1;
 
 FbxUInt64 VisitLayer(Exporters* exporters, FbxLayer* pLayer)
 {
+    // has no userdata so cant dedup here yet
     if(!pLayer) return -1;
-    if (pLayer->GetUserDataPtr()!=NULL) return (FbxUInt64)pLayer->GetUserDataPtr();
-
     int id = layerID+=1;
-    pLayer->SetUserDataPtr((void*)id);
 
-    FbxLayerElementBinormal* binormals = pLayer->GetBinormals();
-    FbxLayerElementCrease* edgeCrease = pLayer->GetEdgeCrease();
-    FbxLayerElementCrease* vertexCrease = pLayer->GetVertexCrease();
-    FbxLayerElementHole* hole = pLayer->GetHole();
-    FbxLayerElementMaterial* materials = pLayer->GetMaterials();
-    FbxLayerElementNormal* normals = pLayer->GetNormals();
-    FbxLayerElementPolygonGroup* polygonGroups = pLayer->GetPolygonGroups();
-    FbxLayerElementSmoothing* smoothing = pLayer->GetSmoothing();
-    FbxLayerElementTangent* tangents = pLayer->GetTangents();
-    FbxLayerElementUserData* userData = pLayer->GetUserData();
-    FbxLayerElementVertexColor* vertexColors = pLayer->GetVertexColors();
-    FbxLayerElementVisibility* visibility = pLayer->GetVisibility();
+
+    int binormalID = VisitBinormals(exporters, pLayer->GetBinormals());
+    int edgeCreaseID = VisitEdgeCrease(exporters, pLayer->GetEdgeCrease());
+    int vertexCreaseID = VisitVertexCrease(exporters, pLayer->GetVertexCrease());
+    int holeID = VisitHole(exporters, pLayer->GetHole());
+    int materialsID = VisitMaterials(exporters, pLayer->GetMaterials());
+    int normalsID = VisitNormals(exporters, pLayer->GetNormals());
+    int polygonGroupsID = VisitPolygonGroups(exporters, pLayer->GetPolygonGroups());
+    int smoothingID = VisitSmoothing(exporters, pLayer->GetSmoothing());
+    int tangentsID = VisitTangents(exporters, pLayer->GetTangents());
+    int userDataID = VisitUserData(exporters, pLayer->GetUserData());
+    int vertexColorsID = VisitVertexColors(exporters, pLayer->GetVertexColors());
+    int visibilityID = VisitVisibility(exporters, pLayer->GetVisibility());
 
     // FbxLayerElementTexture* textures = pLayer->GetTextures(FbxLayerElement::EType pType);
     // FbxLayerElementUV* GetUVs(FbxLayerElement::EType pTypeIdentifier=FbxLayerElement::eTextureDiffuse)

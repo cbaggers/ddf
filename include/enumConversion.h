@@ -35,3 +35,7 @@ int EContactBehaviourToInt(FbxCharacter::EContactBehaviour mode);
 int NodeAttributeETypeToInt(FbxNodeAttribute::EType attrType);
 
 int LayerElementETypeToInt(FbxLayerElement::EType attrType);
+
+int LayerElementMappingModeToInt(FbxLayerElement::EMappingMode mode);
+
+int LayerElementReferenceModeToInt(FbxLayerElement::EReferenceMode mode);
