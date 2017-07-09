@@ -449,3 +449,51 @@ int CameraEFocusDistanceSourceToInt(FbxCamera::EFocusDistanceSource mode)
     }
     exit(36);
 };
+
+
+int LightETypeToInt(FbxLight::EType mode)
+{
+    switch (mode)
+    {
+    case FbxLight::ePoint: return 0;
+    case FbxLight::eDirectional: return 1;
+    case FbxLight::eSpot: return 2;
+    case FbxLight::eArea: return 3;
+    case FbxLight::eVolume: return 4;
+    }
+    exit(37);
+}
+
+int LightEDecayTypeToInt(FbxLight::EDecayType mode)
+{
+    switch (mode)
+    {
+    case FbxLight::eNone: return 0;
+    case FbxLight::eLinear: return 1;
+    case FbxLight::eQuadratic: return 2;
+    case FbxLight::eCubic: return 3;
+    }
+    exit(38);
+}
+
+int LightEAreaLightShapeToInt(FbxLight::EAreaLightShape mode)
+{
+    switch (mode)
+    {
+    case FbxLight::eRectangle: return 0;
+    case FbxLight::eSphere: return 1;
+    }
+    exit(39);
+}
+
+int SkeletonEtypeToInt(FbxSkeleton::EType mode)
+{
+    switch (mode)
+    {
+    case FbxSkeleton::eRoot: return 0;
+    case FbxSkeleton::eLimb: return 1;
+    case FbxSkeleton::eLimbNode: return 2;
+    case FbxSkeleton::eEffector: return 3;
+    }
+    exit(40);
+}

@@ -2,6 +2,78 @@
 #include "include/exporters.h"
 #include "include/attribute.h"
 #include "include/layer.h"
+#include "include/texture.h"
+
+//------------------------------------------------------------
+// Camera
+
+static int skeletonID = -1;
+
+FbxUInt64 VisitSkeleton(Exporters* exporters, FbxSkeleton* pSkeleton)
+{
+    // early out check already done in VisitAttribute
+    int id = skeletonID+=1;
+    pSkeleton->SetUserDataPtr((void*)id);
+
+    int typeID = SkeletonEtypeToInt(pSkeleton->GetSkeletonType());
+    int typeDefaultValueID = SkeletonEtypeToInt(pSkeleton->GetSkeletonTypeDefaultValue());
+
+    bool getLimbNodeColorIsSet = pSkeleton->GetLimbNodeColorIsSet();
+    bool getSkeletonTypeIsSet = pSkeleton->GetSkeletonTypeIsSet();
+    bool isSkeletonRoot = pSkeleton->IsSkeletonRoot();
+    double getLimbLengthDefaultValue = pSkeleton->GetLimbLengthDefaultValue();
+    double getLimbNodeSizeDefaultValue = pSkeleton->GetLimbNodeSizeDefaultValue();
+    FbxColor getLimbNodeColor = pSkeleton->GetLimbNodeColor();
+    FbxColor getLimbNodeColorDefaultValue = pSkeleton->GetLimbNodeColorDefaultValue();
+
+    FbxDouble size = pSkeleton->Size.Get();
+    FbxDouble limbLength = pSkeleton->LimbLength.Get();
+
+    return id;
+}
+
+//------------------------------------------------------------
+// Camera
+
+static int lightID = -1;
+
+FbxUInt64 VisitLight(Exporters* exporters, FbxLight* pLight)
+{
+    // early out check already done in VisitAttribute
+    int id = lightID+=1;
+    pLight->SetUserDataPtr((void*)id);
+
+    FbxBool castLight = pLight->CastLight.Get();
+    FbxBool castShadows = pLight->CastShadows.Get();
+    FbxBool drawFrontFacingVolumetricLight = pLight->DrawFrontFacingVolumetricLight.Get();
+    FbxBool drawGroundProjection = pLight->DrawGroundProjection.Get();
+    FbxBool drawVolumetricLight = pLight->DrawVolumetricLight.Get();
+    FbxBool enableBarnDoor = pLight->EnableBarnDoor.Get();
+    FbxBool enableFarAttenuation = pLight->EnableFarAttenuation.Get();
+    FbxBool enableNearAttenuation = pLight->EnableNearAttenuation.Get();
+    FbxDouble decayStart = pLight->DecayStart.Get();
+    FbxDouble farAttenuationEnd = pLight->FarAttenuationEnd.Get();
+    FbxDouble farAttenuationStart = pLight->FarAttenuationStart.Get();
+    FbxDouble fog = pLight->Fog.Get();
+    FbxDouble innerAngle = pLight->InnerAngle.Get();
+    FbxDouble intensity = pLight->Intensity.Get();
+    FbxDouble nearAttenuationEnd = pLight->NearAttenuationEnd.Get();
+    FbxDouble nearAttenuationStart = pLight->NearAttenuationStart.Get();
+    FbxDouble outerAngle = pLight->OuterAngle.Get();
+    FbxDouble3 color = pLight->Color.Get();
+    FbxDouble3 shadowColor = pLight->ShadowColor.Get();
+    FbxFloat bottomBarnDoor = pLight->BottomBarnDoor.Get();
+    FbxFloat leftBarnDoor = pLight->LeftBarnDoor.Get();
+    FbxFloat rightBarnDoor = pLight->RightBarnDoor.Get();
+    FbxFloat topBarnDoor = pLight->TopBarnDoor.Get();
+    FbxString fileName = pLight->FileName.Get();
+    int areaLightShape = LightEAreaLightShapeToInt(pLight->AreaLightShape.Get());
+    int decayType = LightEDecayTypeToInt(pLight->DecayType.Get());
+    int lightType = LightETypeToInt(pLight->LightType.Get());
+    FbxUInt64 shadowTextureID = VisitTexture(exporters, pLight->GetShadowTexture());
+
+    return id;
+}
 
 //------------------------------------------------------------
 // Camera
@@ -200,14 +272,14 @@ FbxUInt64 VisitAttribute(Exporters* exporters, FbxNodeAttribute* pAttribute)
     case FbxNodeAttribute::eUnknown: return -1;
     case FbxNodeAttribute::eNull: return -1;
     case FbxNodeAttribute::eMarker: return -1;
-    case FbxNodeAttribute::eSkeleton: return -1;
+    case FbxNodeAttribute::eSkeleton: return VisitSkeleton(exporters, (FbxSkeleton*)pAttribute);
     case FbxNodeAttribute::eMesh: return VisitMesh(exporters, (FbxMesh*)pAttribute);
     case FbxNodeAttribute::eNurbs: return -1;
     case FbxNodeAttribute::ePatch: return -1;
     case FbxNodeAttribute::eCamera: return VisitCamera(exporters, (FbxCamera*)pAttribute);
     case FbxNodeAttribute::eCameraStereo: return -1;
     case FbxNodeAttribute::eCameraSwitcher: return -1;
-    case FbxNodeAttribute::eLight: return -1;
+    case FbxNodeAttribute::eLight: return VisitLight(exporters, (FbxLight*)pAttribute);
     case FbxNodeAttribute::eOpticalReference: return -1;
     case FbxNodeAttribute::eOpticalMarker: return -1;
     case FbxNodeAttribute::eNurbsCurve: return -1;

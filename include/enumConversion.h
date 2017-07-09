@@ -69,3 +69,11 @@ int CameraEAntialiasingMethodToInt(FbxCamera::EAntialiasingMethod mode);
 int CameraESamplingTypeToInt(FbxCamera::ESamplingType mode);
 
 int CameraEFocusDistanceSourceToInt(FbxCamera::EFocusDistanceSource mode);
+
+int LightETypeToInt(FbxLight::EType mode);
+
+int LightEDecayTypeToInt(FbxLight::EDecayType mode);
+
+int LightEAreaLightShapeToInt(FbxLight::EAreaLightShape mode);
+
+int SkeletonEtypeToInt(FbxSkeleton::EType mode);

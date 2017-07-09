@@ -19,6 +19,7 @@ set(binary_SOURCES
   character.cpp
   surfacematerial.cpp
   controlSet.cpp
+  texture.cpp
   layer.cpp
   main.cpp
 )
