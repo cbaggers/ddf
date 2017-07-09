@@ -41,3 +41,31 @@ int LayerElementMappingModeToInt(FbxLayerElement::EMappingMode mode);
 int LayerElementReferenceModeToInt(FbxLayerElement::EReferenceMode mode);
 
 int CameraEProjectionTypeToInt(FbxCamera::EProjectionType mode);
+
+int CameraEFormatToInt(FbxCamera::EFormat mode);
+
+int CameraEAspectRatioModeToInt(FbxCamera::EAspectRatioMode mode);
+
+int CameraEApertureFormatToInt(FbxCamera::EApertureFormat mode);
+
+int CameraEApertureModeToInt(FbxCamera::EApertureMode mode);
+
+int CameraEGateFitToInt(FbxCamera::EGateFit mode);
+
+int CameraEFilmRollOrderToInt(FbxCamera::EFilmRollOrder mode);
+
+int CameraEPlateDrawingModeToInt(FbxCamera::EPlateDrawingMode mode);
+
+int CameraEFrontBackPlaneDistanceModeToInt(FbxCamera::EFrontBackPlaneDistanceMode mode);
+
+int CameraEFrontBackPlaneDisplayModeToInt(FbxCamera::EFrontBackPlaneDisplayMode mode);
+
+int CameraESafeAreaStyleToInt(FbxCamera::ESafeAreaStyle mode);
+
+int CameraERenderOptionsUsageTimeToInt(FbxCamera::ERenderOptionsUsageTime mode);
+
+int CameraEAntialiasingMethodToInt(FbxCamera::EAntialiasingMethod mode);
+
+int CameraESamplingTypeToInt(FbxCamera::ESamplingType mode);
+
+int CameraEFocusDistanceSourceToInt(FbxCamera::EFocusDistanceSource mode);

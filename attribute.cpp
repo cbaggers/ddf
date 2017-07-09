@@ -103,21 +103,21 @@ FbxUInt64 VisitCamera(Exporters* exporters, FbxCamera* pCamera)
     FbxDouble3 upVector = pCamera->UpVector.Get();
     FbxInt frameSamplingCount = pCamera->FrameSamplingCount.Get();
 
-    // EAntialiasingMethod antialiasingMethod = pCamera->AntialiasingMethod.Get();
-    // EApertureFormat filmFormat = pCamera->FilmFormat.Get();
-    // EApertureMode apertureMode = pCamera->ApertureMode.Get();
-    // EAspectRatioMode aspectRatioMode = pCamera->AspectRatioMode.Get();
-    // EFilmRollOrder filmRollOrder = pCamera->FilmRollOrder.Get();
-    // EFocusDistanceSource focusSource = pCamera->FocusSource.Get();
-    // EFormat cameraFormat = pCamera->CameraFormat.Get();
-    // EFrontBackPlaneDisplayMode viewFrustumBackPlaneMode = pCamera->ViewFrustumBackPlaneMode.Get();
-    // EFrontBackPlaneDisplayMode viewFrustumFrontPlaneMode = pCamera->ViewFrustumFrontPlaneMode.Get();
-    // EFrontBackPlaneDistanceMode backPlaneDistanceMode = pCamera->BackPlaneDistanceMode.Get();
-    // EFrontBackPlaneDistanceMode frontPlaneDistanceMode = pCamera->FrontPlaneDistanceMode.Get();
-    // EGateFit gateFit = pCamera->GateFit.Get();
-    // EProjectionType projectionType = pCamera->ProjectionType.Get();
-    // ESafeAreaStyle safeAreaDisplayStyle = pCamera->SafeAreaDisplayStyle.Get();
-    // ESamplingType frameSamplingType = pCamera->FrameSamplingType.Get();
+    int antialiasingMethod = CameraEAntialiasingMethodToInt(pCamera->AntialiasingMethod.Get());
+    int filmFormat = CameraEApertureFormatToInt(pCamera->FilmFormat.Get());
+    int apertureMode = CameraEApertureModeToInt(pCamera->ApertureMode.Get());
+    int aspectRatioMode = CameraEAspectRatioModeToInt(pCamera->AspectRatioMode.Get());
+    int filmRollOrder = CameraEFilmRollOrderToInt(pCamera->FilmRollOrder.Get());
+    int focusSource = CameraEFocusDistanceSourceToInt(pCamera->FocusSource.Get());
+    int cameraFormat = CameraEFormatToInt(pCamera->CameraFormat.Get());
+    int viewFrustumBackPlaneMode = CameraEFrontBackPlaneDisplayModeToInt(pCamera->ViewFrustumBackPlaneMode.Get());
+    int viewFrustumFrontPlaneMode = CameraEFrontBackPlaneDisplayModeToInt(pCamera->ViewFrustumFrontPlaneMode.Get());
+    int backPlaneDistanceMode = CameraEFrontBackPlaneDistanceModeToInt(pCamera->BackPlaneDistanceMode.Get());
+    int frontPlaneDistanceMode = CameraEFrontBackPlaneDistanceModeToInt(pCamera->FrontPlaneDistanceMode.Get());
+    int gateFit = CameraEGateFitToInt(pCamera->GateFit.Get());
+    int projectionType = CameraEProjectionTypeToInt(pCamera->ProjectionType.Get());
+    int safeAreaDisplayStyle = CameraESafeAreaStyleToInt(pCamera->SafeAreaDisplayStyle.Get());
+    int frameSamplingType = CameraESamplingTypeToInt(pCamera->FrameSamplingType.Get());
 
     // FbxReference backgroundTexture = pCamera->BackgroundTexture.Get();
     // FbxReference foregroundTexture = pCamera->ForegroundTexture.Get();

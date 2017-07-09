@@ -276,3 +276,176 @@ int CameraEProjectionTypeToInt(FbxCamera::EProjectionType mode)
     }
     exit(22);
 }
+
+
+int CameraEFormatToInt(FbxCamera::EFormat mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eCustomFormat: return 0;
+    case FbxCamera::eD1NTSC: return 1;
+    case FbxCamera::eNTSC: return 2;
+    case FbxCamera::ePAL: return 3;
+    case FbxCamera::eD1PAL: return 4;
+    case FbxCamera::eHD: return 5;
+    case FbxCamera::e640x480: return 6;
+    case FbxCamera::e320x200: return 7;
+    case FbxCamera::e320x240: return 8;
+    case FbxCamera::e128x128: return 9;
+    case FbxCamera::eFullscreen: return 10;
+    }
+    exit(23);
+};
+
+int CameraEAspectRatioModeToInt(FbxCamera::EAspectRatioMode mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eWindowSize: return 0;
+    case FbxCamera::eFixedRatio: return 1;
+    case FbxCamera::eFixedResolution: return 2;
+    case FbxCamera::eFixedWidth: return 3;
+    case FbxCamera::eFixedHeight: return 4;
+    }
+    exit(24);
+};
+
+int CameraEApertureFormatToInt(FbxCamera::EApertureFormat mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eCustomAperture: return 0;
+    case FbxCamera::e16mmTheatrical: return 1;
+    case FbxCamera::eSuper16mm: return 2;
+    case FbxCamera::e35mmAcademy: return 3;
+    case FbxCamera::e35mmTVProjection: return 4;
+    case FbxCamera::e35mmFullAperture: return 5;
+    case FbxCamera::e35mm185Projection: return 6;
+    case FbxCamera::e35mmAnamorphic: return 7;
+    case FbxCamera::e70mmProjection: return 8;
+    case FbxCamera::eVistaVision: return 9;
+    case FbxCamera::eDynaVision: return 10;
+    case FbxCamera::eIMAX: return 11;
+    }
+    exit(25);
+};
+
+int CameraEApertureModeToInt(FbxCamera::EApertureMode mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eHorizAndVert: return 0;
+    case FbxCamera::eHorizontal: return 1;
+    case FbxCamera::eVertical: return 2;
+    case FbxCamera::eFocalLength: return 3;
+    }
+    exit(26);
+};
+
+int CameraEGateFitToInt(FbxCamera::EGateFit mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eFitNone: return 0;
+    case FbxCamera::eFitVertical: return 1;
+    case FbxCamera::eFitHorizontal: return 2;
+    case FbxCamera::eFitFill: return 3;
+    case FbxCamera::eFitOverscan: return 4;
+    case FbxCamera::eFitStretch: return 5;
+    }
+    exit(27);
+};
+
+int CameraEFilmRollOrderToInt(FbxCamera::EFilmRollOrder mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eRotateFirst: return 0;
+    case FbxCamera::eTranslateFirst: return 1;
+    }
+    exit(28);
+};
+
+
+int CameraEPlateDrawingModeToInt(FbxCamera::EPlateDrawingMode mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::ePlateBackground: return 0;
+    case FbxCamera::ePlateForeground: return 1;
+    case FbxCamera::ePlateBackAndFront: return 2;
+    }
+    exit(29);
+};
+
+
+int CameraEFrontBackPlaneDistanceModeToInt(FbxCamera::EFrontBackPlaneDistanceMode mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eRelativeToInterest: return 0;
+    case FbxCamera::eRelativeToCamera: return 1;
+    }
+    exit(30);
+};
+
+int CameraEFrontBackPlaneDisplayModeToInt(FbxCamera::EFrontBackPlaneDisplayMode mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::ePlanesDisabled: return 0;
+    case FbxCamera::ePlanesAlways: return 1;
+    case FbxCamera::ePlanesWhenMedia: return 2;
+    }
+    exit(31);
+};
+
+int CameraESafeAreaStyleToInt(FbxCamera::ESafeAreaStyle mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eSafeAreaRound: return 0;
+    case FbxCamera::eSafeAreaSquare: return 1;
+    }
+    exit(32);
+};
+
+int CameraERenderOptionsUsageTimeToInt(FbxCamera::ERenderOptionsUsageTime mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eInteractive: return 0;
+    case FbxCamera::eOnDemand: return 1;
+    }
+    exit(33);
+};
+
+int CameraEAntialiasingMethodToInt(FbxCamera::EAntialiasingMethod mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eAAOversampling: return 0;
+    case FbxCamera::eAAHardware: return 1;
+    }
+    exit(34);
+};
+
+int CameraESamplingTypeToInt(FbxCamera::ESamplingType mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eSamplingUniform: return 0;
+    case FbxCamera::eSamplingStochastic: return 1;
+    }
+    exit(35);
+};
+
+int CameraEFocusDistanceSourceToInt(FbxCamera::EFocusDistanceSource mode)
+{
+    switch (mode)
+    {
+    case FbxCamera::eFocusSrcCameraInterest: return 0;
+    case FbxCamera::eFocusSpecificDistance: return 1;
+    }
+    exit(36);
+};
