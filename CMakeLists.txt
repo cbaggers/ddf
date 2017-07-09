@@ -21,6 +21,7 @@ set(binary_SOURCES
   controlSet.cpp
   texture.cpp
   layer.cpp
+  blob.cpp
   main.cpp
 )
 

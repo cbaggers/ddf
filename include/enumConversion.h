@@ -77,3 +77,27 @@ int LightEDecayTypeToInt(FbxLight::EDecayType mode);
 int LightEAreaLightShapeToInt(FbxLight::EAreaLightShape mode);
 
 int SkeletonEtypeToInt(FbxSkeleton::EType mode);
+
+int TextureEUnifiedMappingTypeToInt(FbxTexture::EUnifiedMappingType mode);
+
+int TextureETextureUse6ToInt(FbxTexture::ETextureUse6 mode);
+
+int TextureEWrapModeToInt(FbxTexture::EWrapMode mode);
+
+int TextureEBlendModeToInt(FbxTexture::EBlendMode mode);
+
+int TextureEAlignModeToInt(FbxTexture::EAlignMode mode);
+
+int TextureECoordinatesToInt(FbxTexture::ECoordinates mode);
+
+int TextureEAlphaSourceToInt(FbxTexture::EAlphaSource mode);
+
+int TextureEMappingTypeToInt(FbxTexture::EMappingType mode);
+
+int TextureEPlanarMappingNormalToInt(FbxTexture::EPlanarMappingNormal mode);
+
+int TextureETextureUseToInt(FbxTexture::ETextureUse mode);
+
+int LayeredTextureEBlendModeToInt(FbxLayeredTexture::EBlendMode mode);
+
+int FileTextureEMaterialUseToInt(FbxFileTexture::EMaterialUse mode);

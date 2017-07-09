@@ -497,3 +497,184 @@ int SkeletonEtypeToInt(FbxSkeleton::EType mode)
     }
     exit(40);
 }
+
+int TextureEUnifiedMappingTypeToInt(FbxTexture::EUnifiedMappingType mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eUMT_UV: return 0;
+    case FbxTexture::eUMT_XY: return 1;
+    case FbxTexture::eUMT_YZ: return 2;
+    case FbxTexture::eUMT_XZ: return 3;
+    case FbxTexture::eUMT_SPHERICAL: return 4;
+    case FbxTexture::eUMT_CYLINDRICAL: return 5;
+    case FbxTexture::eUMT_ENVIRONMENT: return 6;
+    case FbxTexture::eUMT_PROJECTION: return 7;
+    case FbxTexture::eUMT_BOX: return 8;
+    case FbxTexture::eUMT_FACE: return 9;
+    case FbxTexture::eUMT_NO_MAPPING: return 10;
+    }
+    exit(41);
+}
+
+int TextureETextureUse6ToInt(FbxTexture::ETextureUse6 mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eTEXTURE_USE_6_STANDARD: return 0;
+    case FbxTexture::eTEXTURE_USE_6_SPHERICAL_REFLEXION_MAP: return 1;
+    case FbxTexture::eTEXTURE_USE_6_SPHERE_REFLEXION_MAP: return 2;
+    case FbxTexture::eTEXTURE_USE_6_SHADOW_MAP: return 3;
+    case FbxTexture::eTEXTURE_USE_6_LIGHT_MAP: return 4;
+    case FbxTexture::eTEXTURE_USE_6_BUMP_NORMAL_MAP: return 5;
+    }
+    exit(42);
+}
+
+int TextureEWrapModeToInt(FbxTexture::EWrapMode mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eRepeat: return 0;
+    case FbxTexture::eClamp: return 1;
+    }
+    exit(43);
+}
+
+int TextureEBlendModeToInt(FbxTexture::EBlendMode mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eTranslucent: return 0;
+    case FbxTexture::eAdditive: return 1;
+    case FbxTexture::eModulate: return 2;
+    case FbxTexture::eModulate2: return 3;
+    case FbxTexture::eOver: return 4;
+    }
+    exit(44);
+}
+
+int TextureEAlignModeToInt(FbxTexture::EAlignMode mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eLeft: return 0;
+    case FbxTexture::eRight: return 1;
+    case FbxTexture::eTop: return 2;
+    case FbxTexture::eBottom: return 3;
+    }
+    exit(45);
+}
+
+int TextureECoordinatesToInt(FbxTexture::ECoordinates mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eU: return 0;
+    case FbxTexture::eV: return 1;
+    case FbxTexture::eW: return 2;
+    }
+    exit(46);
+}
+
+int TextureEAlphaSourceToInt(FbxTexture::EAlphaSource mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eNone: return 0;
+    case FbxTexture::eRGBIntensity: return 1;
+    case FbxTexture::eBlack: return 2;
+    }
+    exit(47);
+}
+
+int TextureEMappingTypeToInt(FbxTexture::EMappingType mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eNull: return 0;
+    case FbxTexture::ePlanar: return 1;
+    case FbxTexture::eSpherical: return 2;
+    case FbxTexture::eCylindrical: return 3;
+    case FbxTexture::eBox: return 4;
+    case FbxTexture::eFace: return 5;
+    case FbxTexture::eUV: return 6;
+    case FbxTexture::eEnvironment: return 7;
+    }
+    exit(48);
+}
+
+int TextureEPlanarMappingNormalToInt(FbxTexture::EPlanarMappingNormal mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::ePlanarNormalX: return 0;
+    case FbxTexture::ePlanarNormalY: return 1;
+    case FbxTexture::ePlanarNormalZ: return 2;
+    }
+    exit(49);
+}
+
+int TextureETextureUseToInt(FbxTexture::ETextureUse mode)
+{
+    switch (mode)
+    {
+    case FbxTexture::eStandard: return 0;
+    case FbxTexture::eShadowMap: return 1;
+    case FbxTexture::eLightMap: return 2;
+    case FbxTexture::eSphericalReflectionMap: return 3;
+    case FbxTexture::eSphereReflectionMap: return 4;
+    case FbxTexture::eBumpNormalMap: return 5;
+    }
+    exit(50);
+}
+
+int LayeredTextureEBlendModeToInt(FbxLayeredTexture::EBlendMode mode)
+{
+    switch (mode)
+    {
+    case FbxLayeredTexture::eTranslucent: return 0;
+    case FbxLayeredTexture::eAdditive: return 1;
+    case FbxLayeredTexture::eModulate: return 2;
+    case FbxLayeredTexture::eModulate2: return 3;
+    case FbxLayeredTexture::eOver: return 4;
+    case FbxLayeredTexture::eNormal: return 5;
+    case FbxLayeredTexture::eDissolve: return 6;
+    case FbxLayeredTexture::eDarken: return 7;
+    case FbxLayeredTexture::eColorBurn: return 8;
+    case FbxLayeredTexture::eLinearBurn: return 9;
+    case FbxLayeredTexture::eDarkerColor: return 10;
+    case FbxLayeredTexture::eLighten: return 11;
+    case FbxLayeredTexture::eScreen: return 12;
+    case FbxLayeredTexture::eColorDodge: return 13;
+    case FbxLayeredTexture::eLinearDodge: return 14;
+    case FbxLayeredTexture::eLighterColor: return 15;
+    case FbxLayeredTexture::eSoftLight: return 16;
+    case FbxLayeredTexture::eHardLight: return 17;
+    case FbxLayeredTexture::eVividLight: return 18;
+    case FbxLayeredTexture::eLinearLight: return 19;
+    case FbxLayeredTexture::ePinLight: return 20;
+    case FbxLayeredTexture::eHardMix: return 21;
+    case FbxLayeredTexture::eDifference: return 22;
+    case FbxLayeredTexture::eExclusion: return 23;
+    case FbxLayeredTexture::eSubtract: return 24;
+    case FbxLayeredTexture::eDivide: return 25;
+    case FbxLayeredTexture::eHue: return 26;
+    case FbxLayeredTexture::eSaturation: return 27;
+    case FbxLayeredTexture::eColor: return 28;
+    case FbxLayeredTexture::eLuminosity: return 29;
+    case FbxLayeredTexture::eOverlay: return 30;
+    case FbxLayeredTexture::eBlendModeCount: return 31;
+    }
+    exit(51);
+}
+
+int FileTextureEMaterialUseToInt(FbxFileTexture::EMaterialUse mode)
+{
+    switch (mode)
+    {
+    case FbxFileTexture::eModelMaterial: return 0;
+    case FbxFileTexture::eDefaultMaterial: return 1;
+    }
+    exit(52);
+}
