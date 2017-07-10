@@ -5,16 +5,19 @@
 //------------------------------------------------------------
 // Global Settings
 
-static bool hasVisited = false;
+static int settingsID = -1;
 
 FbxUInt64 VisitGlobalSettings(Exporters* exporters, FbxGlobalSettings* pSettings)
 {
-    if (hasVisited) exit(1001);
-    hasVisited = true;
+    if(!pSettings) return -1;
+    if (pSettings->GetUserDataPtr()!=NULL) return (FbxUInt64)pSettings->GetUserDataPtr();
+
+    int id = settingsID += 1;
+    pSettings->SetUserDataPtr((void*)id);
 
 
 
-    return 0;
+    return id;
 }
 
 //------------------------------------------------------------
