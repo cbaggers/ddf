@@ -15,26 +15,23 @@ FbxUInt64 VisitGlobalSettings(Exporters* exporters, FbxGlobalSettings* pSettings
     int id = settingsID += 1;
     pSettings->SetUserDataPtr((void*)id);
 
-
+    int currentTimeMarker = pSettings->GetCurrentTimeMarker();
+    int originalUpAxis = pSettings->GetOriginalUpAxis();
+    int timeMarkerCount = pSettings->GetTimeMarkerCount();
+    double customFrameRate = pSettings->GetCustomFrameRate();
+    FbxColor ambientColor = pSettings->GetAmbientColor();
+    FbxString defaultCamera = pSettings->GetDefaultCamera();
 
     return id;
 }
 
 //------------------------------------------------------------
 
-// int GetCurrentTimeMarker ()
-// int GetOriginalUpAxis ()
-// int GetTimeMarkerCount ()
-// double GetCustomFrameRate ()
-
-// FbxAxisSystem GetAxisSystem ()
-// FbxColor GetAmbientColor ()
-// FbxString GetDefaultCamera ()
-// FbxSystemUnit GetOriginalSystemUnit ()
-// FbxSystemUnit GetSystemUnit ()
-// TimeMarker GetTimeMarker (int pIndex, FbxStatus *pStatus=NULL)
-// void GetTimelineDefaultTimeSpan (FbxTimeSpan &pTimeSpan)
-
-// FbxTime::EMode GetTimeMode ()
-// FbxTime::EProtocol GetTimeProtocol ()
-// ESnapOnFrameMode GetSnapOnFrameMode ()
+// FbxAxisSystem axisSystem = pSettings->GetAxisSystem();
+// FbxSystemUnit originalSystemUnit = pSettings->GetOriginalSystemUnit();
+// FbxSystemUnit systemUnit = pSettings->GetSystemUnit();
+// TimeMarker timeMarker = pSettings->GetTimeMarker (int pIndex, FbxStatus *pStatus=NULL);
+// void timelineDefaultTimeSpan = pSettings->GetTimelineDefaultTimeSpan (FbxTimeSpan &pTimeSpan);
+// FbxTime::EMode = pSettings->GetTimeMode();
+// FbxTime::EProtocol pSettings->GetTimeProtocol();
+// ESnapOnFrameMode snapOnFrameMode = pSettings->GetSnapOnFrameMode();
