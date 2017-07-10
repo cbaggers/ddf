@@ -5,14 +5,14 @@
 //------------------------------------------------------------
 // Global Settings
 
-static int settingsID = -1;
+static FbxUInt64 settingsID = -1;
 
 FbxUInt64 VisitGlobalSettings(Exporters* exporters, FbxGlobalSettings* pSettings)
 {
     if(!pSettings) return -1;
     if (pSettings->GetUserDataPtr()!=NULL) return (FbxUInt64)pSettings->GetUserDataPtr();
 
-    int id = settingsID += 1;
+    FbxUInt64 id = settingsID += 1;
     pSettings->SetUserDataPtr((void*)id);
 
     int currentTimeMarker = pSettings->GetCurrentTimeMarker();

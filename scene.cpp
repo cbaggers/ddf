@@ -8,14 +8,14 @@
 //------------------------------------------------------------
 // Textures
 
-static int textureID = -1;
+static FbxUInt64 textureID = -1;
 
 FbxUInt64 VisitScene(Exporters* exporters, FbxScene* pScene)
 {
     if(!pScene) return false;
     if (pScene->GetUserDataPtr()!=NULL) return (FbxUInt64)pScene->GetUserDataPtr();
 
-    int id = textureID += 1;
+    FbxUInt64 id = textureID += 1;
     pScene->SetUserDataPtr((void*)id);
 
     // Global Settings

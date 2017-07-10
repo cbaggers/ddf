@@ -8,14 +8,14 @@
 //------------------------------------------------------------
 // Nodes
 
-static int nodeID = -1;
+static FbxUInt64 nodeID = -1;
 
 FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
 {
     if (!pNode) return -1;
     if (pNode->GetUserDataPtr()!=NULL) return (FbxUInt64)pNode->GetUserDataPtr();
 
-    int id = nodeID+=1;
+    FbxUInt64 id = nodeID+=1;
     pNode->SetUserDataPtr((void*)id);
 
     //

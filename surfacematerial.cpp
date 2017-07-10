@@ -86,14 +86,14 @@ void ExportSurfaceLambert(Exporters* exporters, FbxSurfaceLambert* pMaterial)
 //------------------------------------------------------------
 // Surface Materials
 
-static int surfaceMaterialID = -1;
+static FbxUInt64 surfaceMaterialID = -1;
 
 FbxUInt64 VisitSurfaceMaterial(Exporters* exporters, FbxSurfaceMaterial* pMaterial)
 {
     if(!pMaterial) return -1;
     if (pMaterial->GetUserDataPtr()!=NULL) return (FbxUInt64)pMaterial->GetUserDataPtr();
 
-    int id = surfaceMaterialID += 1;
+    FbxUInt64 id = surfaceMaterialID += 1;
     pMaterial->SetUserDataPtr((void*)id);
 
     FbxString shadingModel = pMaterial->ShadingModel.Get();

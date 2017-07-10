@@ -5,7 +5,7 @@
 //------------------------------------------------------------
 // Textures
 
-static int blobID = -1;
+static FbxUInt64 blobID = -1;
 
 FbxUInt64 VisitBlob(Exporters* exporters, FbxBlob pBlob)
 {

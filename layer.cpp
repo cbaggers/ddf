@@ -8,7 +8,7 @@ void ExportIntTemplateArray(FbxLayerElementArrayTemplate<int>& arr)
 {
     int len = arr.GetCount();
     for (int i = 0; i < len; i++) {
-        int ID = arr[i];
+        FbxUInt64 id = arr[i];
     }
 }
 
@@ -59,7 +59,7 @@ void ExportFbxColorTemplateArray(FbxLayerElementArrayTemplate<FbxColor>& arr)
 
 //------------------------------------------------------------
 
-static int layerBinormalsID = -1;
+static FbxUInt64 layerBinormalsID = -1;
 
 FbxUInt64 VisitBinormals (Exporters* exporters, FbxLayerElementBinormal* binormals)
 {
@@ -83,7 +83,7 @@ FbxUInt64 VisitBinormals (Exporters* exporters, FbxLayerElementBinormal* binorma
 
 //------------------------------------------------------------
 
-static int layerEdgeCreaseID = -1;
+static FbxUInt64 layerEdgeCreaseID = -1;
 
 FbxUInt64 VisitEdgeCrease (Exporters* exporters, FbxLayerElementCrease* creases)
 {
@@ -107,7 +107,7 @@ FbxUInt64 VisitEdgeCrease (Exporters* exporters, FbxLayerElementCrease* creases)
 
 //------------------------------------------------------------
 
-static int layerVertexCreaseID = -1;
+static FbxUInt64 layerVertexCreaseID = -1;
 
 FbxUInt64 VisitVertexCrease (Exporters* exporters, FbxLayerElementCrease* creases)
 {
@@ -131,7 +131,7 @@ FbxUInt64 VisitVertexCrease (Exporters* exporters, FbxLayerElementCrease* crease
 
 //------------------------------------------------------------
 
-static int layerHoleID = -1;
+static FbxUInt64 layerHoleID = -1;
 
 FbxUInt64 VisitHole (Exporters* exporters, FbxLayerElementHole* holes)
 {
@@ -155,7 +155,7 @@ FbxUInt64 VisitHole (Exporters* exporters, FbxLayerElementHole* holes)
 
 //------------------------------------------------------------
 
-static int layerMaterialID = -1;
+static FbxUInt64 layerMaterialID = -1;
 
 FbxUInt64 VisitMaterials (Exporters* exporters, FbxLayerElementMaterial* material)
 {
@@ -185,7 +185,7 @@ FbxUInt64 VisitMaterials (Exporters* exporters, FbxLayerElementMaterial* materia
 
 //------------------------------------------------------------
 
-static int layerNormalsID = -1;
+static FbxUInt64 layerNormalsID = -1;
 
 FbxUInt64 VisitNormals (Exporters* exporters, FbxLayerElementNormal* normals)
 {
@@ -214,7 +214,7 @@ FbxUInt64 VisitNormals (Exporters* exporters, FbxLayerElementNormal* normals)
 
 //------------------------------------------------------------
 
-static int layerPolygonGroupID = -1;
+static FbxUInt64 layerPolygonGroupID = -1;
 
 FbxUInt64 VisitPolygonGroups (Exporters* exporters, FbxLayerElementPolygonGroup* material)
 {
@@ -239,7 +239,7 @@ FbxUInt64 VisitPolygonGroups (Exporters* exporters, FbxLayerElementPolygonGroup*
 
 //------------------------------------------------------------
 
-static int layerSmoothingID = -1;
+static FbxUInt64 layerSmoothingID = -1;
 
 FbxUInt64 VisitSmoothing (Exporters* exporters, FbxLayerElementSmoothing* smoothing)
 {
@@ -264,7 +264,7 @@ FbxUInt64 VisitSmoothing (Exporters* exporters, FbxLayerElementSmoothing* smooth
 
 //------------------------------------------------------------
 
-static int layerTangentsID = -1;
+static FbxUInt64 layerTangentsID = -1;
 
 FbxUInt64 VisitTangents (Exporters* exporters, FbxLayerElementTangent* tangents)
 {
@@ -297,7 +297,7 @@ FbxUInt64 VisitUserData (Exporters* exporters, FbxLayerElementUserData* foo)
 
 //------------------------------------------------------------
 
-static int layerVertexColorsID = -1;
+static FbxUInt64 layerVertexColorsID = -1;
 
 FbxUInt64 VisitVertexColors (Exporters* exporters, FbxLayerElementVertexColor* colors)
 {
@@ -321,7 +321,7 @@ FbxUInt64 VisitVertexColors (Exporters* exporters, FbxLayerElementVertexColor* c
 
 //------------------------------------------------------------
 
-static int layerVisibilityID = -1;
+static FbxUInt64 layerVisibilityID = -1;
 
 FbxUInt64 VisitVisibility (Exporters* exporters, FbxLayerElementVisibility* visibility)
 {
@@ -345,7 +345,7 @@ FbxUInt64 VisitVisibility (Exporters* exporters, FbxLayerElementVisibility* visi
 
 //------------------------------------------------------------
 
-static int layerUVSetID = -1;
+static FbxUInt64 layerUVSetID = -1;
 
 FbxUInt64 VisitUVSet (Exporters* exporters, const FbxLayerElementUV* uvs)
 {
@@ -371,7 +371,7 @@ FbxUInt64 VisitUVSet (Exporters* exporters, const FbxLayerElementUV* uvs)
     return id;
 }
 
-static int layerUVSetsID = -1;
+static FbxUInt64 layerUVSetsID = -1;
 
 FbxUInt64 VisitUVSets (Exporters* exporters, FbxArray<const FbxLayerElementUV*>& uvSets)
 {
@@ -389,13 +389,13 @@ FbxUInt64 VisitUVSets (Exporters* exporters, FbxArray<const FbxLayerElementUV*>&
 
 //------------------------------------------------------------
 
-static int layerID = -1;
+static FbxUInt64 layerID = -1;
 
 FbxUInt64 VisitLayer(Exporters* exporters, FbxLayer* pLayer)
 {
     // has no userdata so cant dedup here yet
     if(!pLayer) return -1;
-    int id = layerID+=1;
+    FbxUInt64 id = layerID+=1;
 
     int binormalID = VisitBinormals(exporters, pLayer->GetBinormals());
     int edgeCreaseID = VisitEdgeCrease(exporters, pLayer->GetEdgeCrease());

@@ -6,7 +6,7 @@
 //------------------------------------------------------------
 // Textures
 
-static int textureID = -1;
+static FbxUInt64 textureID = -1;
 
 FbxUInt64 VisitTexture(Exporters* exporters, FbxTexture* pTexture)
 {
@@ -15,7 +15,7 @@ FbxUInt64 VisitTexture(Exporters* exporters, FbxTexture* pTexture)
     if(!pTexture) return -1;
     if (pTexture->GetUserDataPtr()!=NULL) return (FbxUInt64)pTexture->GetUserDataPtr();
 
-    int id = textureID += 1;
+    FbxUInt64 id = textureID += 1;
     pTexture->SetUserDataPtr((void*)id);
 
     FbxBool premultiplyAlpha = pTexture->PremultiplyAlpha.Get();

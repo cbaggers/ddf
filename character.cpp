@@ -6,14 +6,14 @@
 //------------------------------------------------------------
 // Characters
 
-static int characterID = -1;
+static FbxUInt64 characterID = -1;
 
 FbxUInt64 VisitCharacter(Exporters* exporters, FbxCharacter* pCharacter)
 {
     if (!pCharacter) return -1;
     if (pCharacter->GetUserDataPtr()!=NULL) return (FbxUInt64)pCharacter->GetUserDataPtr();
 
-    int id = characterID+=1;
+    FbxUInt64 id = characterID+=1;
     pCharacter->SetUserDataPtr((void*)id);
 
     FbxCharacter::EInputType inputType = pCharacter->GetInputType();
@@ -272,7 +272,7 @@ FbxUInt64 VisitCharacter(Exporters* exporters, FbxCharacter* pCharacter)
 
 //------------------------------------------------------------
 
-// static int GetCharacterGroupCount (EGroupId pCharacterGroupId)
-// static int GetCharacterGroupVersionByIndex (EGroupId pCharacterGroupId, int pIndex)
+// static FbxUInt64 GetCharacterGroupCount (EGroupId pCharacterGroupId)
+// static FbxUInt64 GetCharacterGroupVersionByIndex (EGroupId pCharacterGroupId, int pIndex)
 // static ENodeId GetCharacterGroupElementByIndex (EGroupId pCharacterGroupId, int pIndex)
 // static char * GetCharacterGroupNameByIndex (EGroupId pCharacterGroupId, int pIndex)

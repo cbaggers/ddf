@@ -7,12 +7,12 @@
 //------------------------------------------------------------
 // Camera
 
-static int skeletonID = -1;
+static FbxUInt64 skeletonID = -1;
 
 FbxUInt64 VisitSkeleton(Exporters* exporters, FbxSkeleton* pSkeleton)
 {
     // early out check already done in VisitAttribute
-    int id = skeletonID+=1;
+    FbxUInt64 id = skeletonID+=1;
     pSkeleton->SetUserDataPtr((void*)id);
 
     int typeID = SkeletonEtypeToInt(pSkeleton->GetSkeletonType());
@@ -35,12 +35,12 @@ FbxUInt64 VisitSkeleton(Exporters* exporters, FbxSkeleton* pSkeleton)
 //------------------------------------------------------------
 // Camera
 
-static int lightID = -1;
+static FbxUInt64 lightID = -1;
 
 FbxUInt64 VisitLight(Exporters* exporters, FbxLight* pLight)
 {
     // early out check already done in VisitAttribute
-    int id = lightID+=1;
+    FbxUInt64 id = lightID+=1;
     pLight->SetUserDataPtr((void*)id);
 
     FbxBool castLight = pLight->CastLight.Get();
@@ -78,12 +78,12 @@ FbxUInt64 VisitLight(Exporters* exporters, FbxLight* pLight)
 //------------------------------------------------------------
 // Camera
 
-static int cameraID = -1;
+static FbxUInt64 cameraID = -1;
 
 FbxUInt64 VisitCamera(Exporters* exporters, FbxCamera* pCamera)
 {
     // early out check already done in VisitAttribute
-    int id = cameraID+=1;
+    FbxUInt64 id = cameraID+=1;
     pCamera->SetUserDataPtr((void*)id);
 
     FbxBool autoComputeClipPlanes = pCamera->AutoComputeClipPlanes.Get();
@@ -214,12 +214,12 @@ FbxUInt64 VisitCamera(Exporters* exporters, FbxCamera* pCamera)
 //------------------------------------------------------------
 // Mesh
 
-static int meshID = -1;
+static FbxUInt64 meshID = -1;
 
 FbxUInt64 VisitMesh(Exporters* exporters, FbxMesh* pMesh)
 {
     // early out check already done in VisitAttribute
-    int id = meshID+=1;
+    FbxUInt64 id = meshID+=1;
     pMesh->SetUserDataPtr((void*)id);
 
     FbxStatus pStatus;
