@@ -692,7 +692,7 @@ int FbxAnimLayerEBlendModeToInt(FbxAnimLayer::EBlendMode mode)
     exit(53);
 }
 
-int FbxAnimLayerERotationAccumulationMode ToInt(FbxAnimLayer::ERotationAccumulationMode  mode)
+int FbxAnimLayerERotationAccumulationModeToInt(FbxAnimLayer::ERotationAccumulationMode  mode)
 {
     switch (mode)
     {
@@ -741,5 +741,95 @@ int EFbxTypeToInt(EFbxType mode)
     case eFbxDistance: return 22;
     case eFbxDateTime: return 23;
     case eFbxTypeCount: return 24;
+    case eFbxEnumM: return 25;
     }
+    exit(56);
+}
+
+int FbxAnimCurveDefETangentModeToInt(FbxAnimCurveDef::ETangentMode mode)
+{
+    switch (mode)
+    {
+    case FbxAnimCurveDef::eTangentAuto: return 1;
+    case FbxAnimCurveDef::eTangentTCB: return 2;
+    case FbxAnimCurveDef::eTangentUser: return 4;
+    case FbxAnimCurveDef::eTangentGenericBreak: return 8;
+    case FbxAnimCurveDef::eTangentBreak: return 12; // eTangentGenericBreak|eTangentUser
+    case FbxAnimCurveDef::eTangentAutoBreak: return 9; // eTangentGenericBreak|eTangentAuto
+    case FbxAnimCurveDef::eTangentGenericClamp: return 16;
+    case FbxAnimCurveDef::eTangentGenericTimeIndependent: return 32;
+    case FbxAnimCurveDef::eTangentGenericClampProgressive: return 96; // 64|eTangentGenericTimeIndependent;
+    }
+    exit(57);
+}
+
+int FbxAnimCurveDefEInterpolationTypeToInt(FbxAnimCurveDef::EInterpolationType mode)
+{
+    switch (mode)
+    {
+    case FbxAnimCurveDef::eInterpolationConstant: return 0;
+    case FbxAnimCurveDef::eInterpolationLinear: return 1;
+    case FbxAnimCurveDef::eInterpolationCubic: return 2;
+    }
+    exit(58);
+}
+
+int FbxAnimCurveDefEWeightedModeToInt(FbxAnimCurveDef::EWeightedMode mode)
+{
+    switch (mode)
+    {
+    case FbxAnimCurveDef::eWeightedNone: return 0;
+    case FbxAnimCurveDef::eWeightedRight: return 1;
+    case FbxAnimCurveDef::eWeightedNextLeft: return 2;
+    case FbxAnimCurveDef::eWeightedAll: return 3; // eWeightedRight|eWeightedNextLeft;
+    }
+    exit(59);
+}
+
+int FbxAnimCurveDefEConstantModeToInt(FbxAnimCurveDef::EConstantMode mode)
+{
+    switch (mode)
+    {
+    case FbxAnimCurveDef::eConstantStandard: return 0;
+    case FbxAnimCurveDef::eConstantNext: return 1;
+    }
+    exit(60);
+}
+
+int FbxAnimCurveDefEVelocityModeToInt(FbxAnimCurveDef::EVelocityMode mode)
+{
+    switch (mode)
+    {
+    case FbxAnimCurveDef::eVelocityNone: return 0;
+    case FbxAnimCurveDef::eVelocityRight: return 1;
+    case FbxAnimCurveDef::eVelocityNextLeft: return 2;
+    case FbxAnimCurveDef::eVelocityAll: return 3; // eVelocityRight|eVelocityNextLeft
+    }
+    exit(61);
+}
+
+int FbxAnimCurveDefETangentVisibilityToInt(FbxAnimCurveDef::ETangentVisibility mode)
+{
+    switch (mode)
+    {
+    case FbxAnimCurveDef::eTangentShowNone: return 0;
+    case FbxAnimCurveDef::eTangentShowLeft: return 1;
+    case FbxAnimCurveDef::eTangentShowRight: return 2;
+    case FbxAnimCurveDef::eTangentShowBoth: return 3; // eTangentShowLeft|eTangentShowRight
+    }
+    exit(62);
+}
+
+int FbxAnimCurveDefEDataIndexToInt(FbxAnimCurveDef::EDataIndex mode)
+{
+    switch (mode)
+    {
+    case FbxAnimCurveDef::eRightSlope: return 0; // also eTCBTension
+    case FbxAnimCurveDef::eNextLeftSlope: return 1; // also eTCBContinuity
+    case FbxAnimCurveDef::eTCBBias: return 2; // also eRightWeight & eWeights
+    case FbxAnimCurveDef::eNextLeftWeight: return 3;
+    case FbxAnimCurveDef::eVelocity: return 4; // also eRightVelocity
+    case FbxAnimCurveDef::eNextLeftVelocity: return 5;
+    }
+    exit(63);
 }

@@ -101,3 +101,17 @@ int TextureETextureUseToInt(FbxTexture::ETextureUse mode);
 int LayeredTextureEBlendModeToInt(FbxLayeredTexture::EBlendMode mode);
 
 int FileTextureEMaterialUseToInt(FbxFileTexture::EMaterialUse mode);
+
+int FbxAnimCurveDefETangentModeToInt(FbxAnimCurveDef::ETangentMode mode);
+
+int FbxAnimCurveDefEInterpolationTypeToInt(FbxAnimCurveDef::EInterpolationType mode);
+
+int FbxAnimCurveDefEWeightedModeToInt(FbxAnimCurveDef::EWeightedMode mode);
+
+int FbxAnimCurveDefEConstantModeToInt(FbxAnimCurveDef::EConstantMode mode);
+
+int FbxAnimCurveDefEVelocityModeToInt(FbxAnimCurveDef::EVelocityMode mode);
+
+int FbxAnimCurveDefETangentVisibilityToInt(FbxAnimCurveDef::ETangentVisibility mode);
+
+int FbxAnimCurveDefEDataIndexToInt(FbxAnimCurveDef::EDataIndex mode);

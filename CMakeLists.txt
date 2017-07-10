@@ -25,6 +25,9 @@ set(binary_SOURCES
   blob.cpp
   globalSettings.cpp
   animStack.cpp
+  animLayer.cpp
+  animCurve.cpp
+  animCurveNode.cpp
   scene.cpp
   main.cpp
 )

@@ -1,6 +1,7 @@
 #include "include/enumConversion.h"
 #include "include/exporters.h"
 #include "include/animLayer.h"
+#include "include/animCurveNode.h"
 
 //------------------------------------------------------------
 // AnimLayer
@@ -24,8 +25,15 @@ FbxUInt64 VisitAnimLayer(Exporters* exporters, FbxAnimLayer* pAnimLayer)
     FbxEnum rotationAccumulationMode = pAnimLayer->RotationAccumulationMode.Get();
     FbxEnum scaleAccumulationMode = pAnimLayer->ScaleAccumulationMode.Get();
 
-    EFbxType pType;
-    bool blendModeBypass = pAnimLayer->GetBlendModeBypass(pType);
+    // EFbxType pType;
+    // bool blendModeBypass = pAnimLayer->GetBlendModeBypass(pType);
 
-return id;
+    int numAnimLayers = pAnimLayer->GetMemberCount<FbxAnimCurveNode>();
+    for (int animLayer=0; animLayer<numAnimLayers; animLayer++)
+    {
+        FbxAnimCurveNode* pAnimCurveNode = pAnimLayer->GetMember<FbxAnimCurveNode>(animLayer);
+        VisitAnimCurveNode(exporters, pAnimCurveNode);
+    }
+
+    return id;
 }
