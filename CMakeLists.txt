@@ -24,6 +24,7 @@ set(binary_SOURCES
   layer.cpp
   blob.cpp
   globalSettings.cpp
+  animStack.cpp
   scene.cpp
   main.cpp
 )

@@ -678,3 +678,68 @@ int FileTextureEMaterialUseToInt(FbxFileTexture::EMaterialUse mode)
     }
     exit(52);
 }
+
+
+
+int FbxAnimLayerEBlendModeToInt(FbxAnimLayer::EBlendMode mode)
+{
+    switch (mode)
+    {
+    case FbxAnimLayer::eBlendAdditive: return 0;
+    case FbxAnimLayer::eBlendOverride: return 1;
+    case FbxAnimLayer::eBlendOverridePassthrough : return 2;
+    }
+    exit(53);
+}
+
+int FbxAnimLayerERotationAccumulationMode ToInt(FbxAnimLayer::ERotationAccumulationMode  mode)
+{
+    switch (mode)
+    {
+    case FbxAnimLayer::eRotationByLayer: return 0;
+    case FbxAnimLayer::eRotationByChannel : return 1;
+    }
+    exit(54);
+}
+
+int FbxAnimLayerEScaleAccumulationModeToInt(FbxAnimLayer::EScaleAccumulationMode  mode)
+{
+    switch (mode)
+    {
+    case FbxAnimLayer::eScaleMultiply: return 0;
+    case FbxAnimLayer::eScaleAdditive : return 1;
+    }
+    exit(55);
+}
+
+int EFbxTypeToInt(EFbxType mode)
+{
+    switch (mode)
+    {
+    case eFbxUndefined: return 0;
+    case eFbxChar: return 1;
+    case eFbxUChar: return 2;
+    case eFbxShort: return 3;
+    case eFbxUShort: return 4;
+    case eFbxUInt: return 5;
+    case eFbxLongLong: return 6;
+    case eFbxULongLong: return 7;
+    case eFbxHalfFloat: return 8;
+    case eFbxBool: return 9;
+    case eFbxInt: return 10;
+    case eFbxFloat: return 11;
+    case eFbxDouble: return 12;
+    case eFbxDouble2: return 13;
+    case eFbxDouble3: return 14;
+    case eFbxDouble4: return 15;
+    case eFbxDouble4x4: return 16;
+    case eFbxEnum: return 17;
+    case eFbxString: return 18;
+    case eFbxTime: return 19;
+    case eFbxReference: return 20;
+    case eFbxBlob: return 21;
+    case eFbxDistance: return 22;
+    case eFbxDateTime: return 23;
+    case eFbxTypeCount: return 24;
+    }
+}
