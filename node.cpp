@@ -12,7 +12,7 @@ static int nodeID = -1;
 
 FbxUInt64 VisitNode(Exporters* exporters, FbxNode* pNode)
 {
-    if (!pNode) return false;
+    if (!pNode) return -1;
     if (pNode->GetUserDataPtr()!=NULL) return (FbxUInt64)pNode->GetUserDataPtr();
 
     int id = nodeID+=1;

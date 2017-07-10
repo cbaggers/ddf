@@ -22,6 +22,8 @@ set(binary_SOURCES
   texture.cpp
   layer.cpp
   blob.cpp
+  globalSettings.cpp
+  scene.cpp
   main.cpp
 )
 

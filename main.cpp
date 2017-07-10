@@ -2,11 +2,7 @@
 #include <fbxsdk.h>
 
 #include "include/exporters.h"
-#include "include/enumConversion.h"
-#include "include/node.h"
-#include "include/character.h"
-#include "include/attribute.h"
-#include "include/surfacematerial.h"
+#include "include/scene.h"
 
 int main(int argc, char** argv)
 {
@@ -44,15 +40,9 @@ int main(int argc, char** argv)
     // The file is imported; so get rid of the importer.
     lImporter->Destroy();
 
-    // Print the nodes of the scene and their attributes recursively.
-    // Note that we are not printing the root node because it should
-    // not contain any attributes.
-    FbxNode* lRootNode = lScene->GetRootNode();
-    if (lRootNode)
-    {
-        for(int i = 0; i < lRootNode->GetChildCount(); i++)
-            VisitNode(exporters, lRootNode->GetChild(i));
-    }
+    // Walk, dumping dumbly
+    VisitScene(exporters, lScene);
+
     // Destroy the SDK manager and all the other objects it was handling.
     lSdkManager->Destroy();
     return 0;

@@ -12,7 +12,7 @@ FbxUInt64 VisitTexture(Exporters* exporters, FbxTexture* pTexture)
 {
     // {TODO} this needs object
 
-    if(!pTexture) return false;
+    if(!pTexture) return -1;
     if (pTexture->GetUserDataPtr()!=NULL) return (FbxUInt64)pTexture->GetUserDataPtr();
 
     int id = textureID += 1;

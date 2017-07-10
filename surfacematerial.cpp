@@ -90,7 +90,7 @@ static int surfaceMaterialID = -1;
 
 FbxUInt64 VisitSurfaceMaterial(Exporters* exporters, FbxSurfaceMaterial* pMaterial)
 {
-    if(!pMaterial) return false;
+    if(!pMaterial) return -1;
     if (pMaterial->GetUserDataPtr()!=NULL) return (FbxUInt64)pMaterial->GetUserDataPtr();
 
     int id = surfaceMaterialID += 1;
