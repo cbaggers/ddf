@@ -71,16 +71,23 @@ FbxUInt64 VisitTexture(Exporters* exporters, FbxTexture* pTexture)
     else if (pTexture->GetClassId().Is(FbxLayeredTexture::ClassId))
     {
         // ExportInt(1);
-        int pIndex = 0;
         FbxLayeredTexture* pLayeredTexture = (FbxLayeredTexture*)pTexture;
-        FbxLayeredTexture::EBlendMode pMode;
-        int blendMode = -1;
-        if (pLayeredTexture->GetTextureBlendMode(pIndex, pMode))
-        {
-            blendMode = LayeredTextureEBlendModeToInt(pMode);
-        }
 
-        // bool GetTextureAlpha (int pIndex, double &pAlpha)
+        for(int pIndex=0; pIndex<pTexture->GetSrcObjectCount<FbxTexture>(); ++pIndex)
+        {
+            FbxLayeredTexture::EBlendMode pMode;
+            double pAlpha;
+            int blendMode = -1;
+            int alphaMode = -1;
+            if (pLayeredTexture->GetTextureBlendMode(pIndex, pMode))
+            {
+                blendMode = LayeredTextureEBlendModeToInt(pMode);
+            }
+            if (pLayeredTexture->GetTextureAlpha(pIndex, pAlpha))
+            {
+                alphaMode = pAlpha;
+            }
+        }
     }
     else if (pTexture->GetClassId().Is(FbxProceduralTexture::ClassId))
     {
