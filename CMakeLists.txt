@@ -28,6 +28,7 @@ set(binary_SOURCES
   animLayer.cpp
   animCurve.cpp
   animCurveNode.cpp
+  animCurveKey.cpp
   scene.cpp
   main.cpp
 )

@@ -825,10 +825,10 @@ int FbxAnimCurveDefEDataIndexToInt(FbxAnimCurveDef::EDataIndex mode)
     switch (mode)
     {
     case FbxAnimCurveDef::eRightSlope: return 0; // also eTCBTension
+    case FbxAnimCurveDef::eRightWeight: return 2; // also eTCBBias & eWeights
+    case FbxAnimCurveDef::eRightVelocity: return 4; // also eVelocity
     case FbxAnimCurveDef::eNextLeftSlope: return 1; // also eTCBContinuity
-    case FbxAnimCurveDef::eTCBBias: return 2; // also eRightWeight & eWeights
     case FbxAnimCurveDef::eNextLeftWeight: return 3;
-    case FbxAnimCurveDef::eVelocity: return 4; // also eRightVelocity
     case FbxAnimCurveDef::eNextLeftVelocity: return 5;
     }
     exit(63);

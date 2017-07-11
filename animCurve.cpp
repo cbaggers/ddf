@@ -1,6 +1,7 @@
 #include "include/enumConversion.h"
 #include "include/exporters.h"
 #include "include/animCurve.h"
+#include "include/animCurveKey.h"
 
 //------------------------------------------------------------
 // AnimCurve
@@ -46,9 +47,11 @@ FbxUInt64 VisitAnimCurve(Exporters* exporters, FbxAnimCurve* pAnimCurve)
 
         FbxTime keyTime = pAnimCurve->KeyGetTime(keyIndex);
 
+        // {TODO} what to do with these?
         FbxAnimCurveTangentInfo keyLeftDerivativeInfo = pAnimCurve->KeyGetLeftDerivativeInfo(keyIndex);
         FbxAnimCurveTangentInfo keyRightDerivativeInfo = pAnimCurve->KeyGetRightDerivativeInfo(keyIndex);
-        // {TODO} what to do with these?
+
+        FbxUInt64 keyID = VisitAnimCurveKey(exporters, &key);
     }
 
     return id;

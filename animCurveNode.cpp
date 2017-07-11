@@ -1,6 +1,7 @@
 #include "include/enumConversion.h"
 #include "include/exporters.h"
 #include "include/animCurveNode.h"
+#include "include/animCurve.h"
 
 //------------------------------------------------------------
 // AnimCurveNode
@@ -50,6 +51,7 @@ FbxUInt64 VisitAnimCurveNode(Exporters* exporters, FbxAnimCurveNode* pAnimCurveN
         for (int curveIndex = 0; curveIndex < curveCount; curveIndex++)
         {
             FbxAnimCurve* curve = pAnimCurveNode->GetCurve(channelIndex, curveIndex);
+            FbxUInt64 curveID = VisitAnimCurve(exporters, curve);
         }
     }
 
