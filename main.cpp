@@ -51,13 +51,15 @@ int main(int argc, char** argv)
     // Walk, dumping dumbly
     high_resolution_clock::time_point preWalk = high_resolution_clock::now();
     VisitScene(exporters, lScene);
+    FlushExporters(exporters);
     high_resolution_clock::time_point postWalk = high_resolution_clock::now();
 
+    // Record Times
     double time_init = duration_cast<duration<double>>(postInit-preInit).count() * 1000;
     double time_import = duration_cast<duration<double>>(postImport-preImport).count() * 1000;
     double time_walk = duration_cast<duration<double>>(postWalk-preWalk).count() * 1000;
-
     printf("\ninit=%f  import=%f  walk=%f\n", time_init, time_import, time_walk);
+
     // Destroy the SDK manager and all the other objects it was handling.
     lSdkManager->Destroy();
     return 0;
