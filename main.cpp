@@ -3,7 +3,7 @@
 #include <ctime>
 #include <chrono>
 
-int main(int argc, char** argv)
+int inner_foo()
 {
     using namespace std::chrono;
     high_resolution_clock::time_point preInit = high_resolution_clock::now();
@@ -57,4 +57,9 @@ int main(int argc, char** argv)
     // Destroy the SDK manager and all the other objects it was handling.
     lSdkManager->Destroy();
     return 0;
+}
+
+extern "C" void foo()
+{
+    inner_foo();
 }
