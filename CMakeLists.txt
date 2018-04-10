@@ -14,7 +14,7 @@ LINK_DIRECTORIES(/usr/local/lib/fbx/lib/gcc4/x64/debug/)
 # Source fles for the binary
 set(binary_SOURCES
   # files go here :p
-  main.cpp
+  libextern.cpp
 )
 
 # Make a lib with the above sources
