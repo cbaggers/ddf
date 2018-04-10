@@ -13,23 +13,7 @@ LINK_DIRECTORIES(/usr/local/lib/fbx/lib/gcc4/x64/debug/)
 
 # Source fles for the binary
 set(binary_SOURCES
-  exporters.cpp
-  enumConversion.cpp
-  node.cpp
-  attribute.cpp
-  character.cpp
-  surfacematerial.cpp
-  controlSet.cpp
-  texture.cpp
-  layer.cpp
-  blob.cpp
-  globalSettings.cpp
-  animStack.cpp
-  animLayer.cpp
-  animCurve.cpp
-  animCurveNode.cpp
-  animCurveKey.cpp
-  scene.cpp
+  # files go here :p
   main.cpp
 )
 

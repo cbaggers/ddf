@@ -3,9 +3,6 @@
 #include <ctime>
 #include <chrono>
 
-#include "include/exporters.h"
-#include "include/scene.h"
-
 int main(int argc, char** argv)
 {
     using namespace std::chrono;
@@ -14,8 +11,6 @@ int main(int argc, char** argv)
     // Change the following filename to a suitable filename value.
     // Loader doesnt seem to like ~/
     const char* lFilename = "/home/baggers/Code/c++/dumb-dump-fbx/humanoid.fbx";
-
-    Exporters* exporters = InitExporters(lFilename);
 
     // Initialize the SDK manager. This object handles all our memory management.
     FbxManager* lSdkManager = FbxManager::Create();
@@ -50,8 +45,7 @@ int main(int argc, char** argv)
 
     // Walk, dumping dumbly
     high_resolution_clock::time_point preWalk = high_resolution_clock::now();
-    VisitScene(exporters, lScene);
-    FlushExporters(exporters);
+    // .. magic goes here ..
     high_resolution_clock::time_point postWalk = high_resolution_clock::now();
 
     // Record Times
